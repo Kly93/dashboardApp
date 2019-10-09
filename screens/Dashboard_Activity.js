@@ -11,7 +11,7 @@ export default class Dashboard_Activity extends React.Component {
 
   render() {
     return (
-        <ScrollView style={styles.mainContainer}>
+        <ScrollView >
         <Area />
         <Line />
         <Pie/>

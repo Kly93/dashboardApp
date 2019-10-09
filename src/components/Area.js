@@ -1,11 +1,11 @@
 import React from 'react';
-import { AreaChart, Grid } from 'react-native-svg-charts';
-import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
+import {AreaChart, Grid} from 'react-native-svg-charts';
+import {Text, View, Dimensions, StyleSheet, SafeAreaView} from 'react-native';
 import moment from 'moment';
-import { Circle } from 'react-native-svg';
+import {Circle} from 'react-native-svg';
 import Tooltip from './Tooltip';
 
-const { height } = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 class Area extends React.PureComponent {
   state = {
@@ -16,29 +16,30 @@ class Area extends React.PureComponent {
   };
 
   componentDidMount = () => {
-      // Replace with prod URL 
-         fetch('http://10.24.24.28:8080/get', { method: 'GET' })
-            .then(response => response.json() )
-            .then(data => data.sort((a, b) => {
-                return new Date(a.time) - new Date(b.time);
-              }))
-            .then((responseJson) => {
-                console.log(responseJson);
-                this.setState({
-                   data: responseJson
-                })
-             })
-             .catch((error) => {
-                console.error(error);
-             });
-          }
+    // Replace with prod URL
+    fetch('http://10.24.24.28:8080/get', {method: 'GET'})
+      .then(response => response.json())
+      .then(data =>
+        data.sort((a, b) => {
+          return new Date(a.time) - new Date(b.time);
+        }),
+      )
+      .then(responseJson => {
+        console.log(responseJson);
+        this.setState({
+          data: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   render() {
+    const {data, tooltipX, tooltipY, tooltipIndex} = this.state;
+    const contentInset = {left: 10, right: 10, top: 10, bottom: 7};
 
-    const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
-    const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
-
-    const ChartPoints = ({ x, y, color }) =>
+    const ChartPoints = ({x, y, color}) =>
       data.map((item, index) => (
         <Circle
           key={index}
@@ -53,26 +54,28 @@ class Area extends React.PureComponent {
               tooltipY: item.smiley,
               tooltipIndex: index,
             })
-            }
+          }
         />
       ));
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           {data.length !== 0 ? (
             <AreaChart
-              style={{ height: '70%' }}
+              style={{height: '70%'}}
               data={data}
-              yAccessor={({ item }) => item.smiley}
-              xAccessor={({ item }) => moment(item.time)}
+              yAccessor={({item}) => item.smiley}
+              xAccessor={({item}) => moment(item.time)}
               contentInset={contentInset}
-              svg={{ fill: '#003F5A' }}
+              svg={{fill: '#003F5A'}}
               numberOfTicks={10}
               yMin={0}
-              yMax={10}
-            >
-              <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
+              yMax={10}>
+              <Grid
+                svg={{stroke: 'rgba(151, 151, 151, 0.09)'}}
+                belowChart={false}
+              />
               <ChartPoints color="#003F5A" />
               <Tooltip
                 tooltipX={tooltipX}
@@ -88,14 +91,12 @@ class Area extends React.PureComponent {
                 height: '50%',
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}
-            >
+              }}>
               <Text
                 style={{
                   fontSize: 18,
                   color: '#ccc',
-                }}
-              >
+                }}>
                 There are no responses for this month.
               </Text>
             </View>

@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import Area from '../src/components/Area';
 import Line from '../src/components/Line';
 import Pie from '../src/components/Pie';
@@ -11,21 +17,17 @@ export default class Dashboard_Activity extends React.Component {
 
   render() {
     return (
-        <ScrollView style={styles.mainContainer}>
-        <Area />
-        <Line />
-        <Pie/>
-    </ScrollView>
+      <ScrollView>
+        <View style={styles.mainContainer}>
+          <Area />
+          <Line />
+          <Pie />
+        </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f4f6f9',
-    padding: 11,
-  },
+  mainContainer: {},
 });

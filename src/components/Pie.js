@@ -25,9 +25,9 @@ class Pie extends React.PureComponent {
 render() {
     const { data } = this.state
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
-    const id = data.map((key, value) => (key.id))
+    const smiley = data.map((key, value) => (key.smiley))
 
-    const pieData = id
+    const pieData = smiley
     .filter((value) => value > 0)
     .map((value, index) => ({
         value,
@@ -47,7 +47,7 @@ render() {
                     </PieChart>
             <Text
                 style={ { fontSize: 25, textAlign: 'center' } }>
-                    Ids</Text>
+                    Smiley Range</Text>
         </View>
     )
 }

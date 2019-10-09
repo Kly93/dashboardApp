@@ -38,19 +38,24 @@ class Area extends React.PureComponent {
     const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
     const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
 
+    const Foo = ({}) => 
+      data.map((item, index) => (
+          console.log(index)
+      ));
+
     const ChartPoints = ({ x, y, color }) =>
       data.map((item, index) => (
         <Circle
           key={index}
           cx={x(moment(item.time))}
-          cy={y(item.smiley)}
+          cy={y(index)}
           r={6}
           stroke={color}
           fill="white"
           onPress={() =>
             this.setState({
               tooltipX: moment(item.time),
-              tooltipY: item.smiley,
+              tooltipY: index,
               tooltipIndex: index,
             })
             }
@@ -64,7 +69,7 @@ class Area extends React.PureComponent {
             <AreaChart
               style={{ height: '70%' }}
               data={data}
-              yAccessor={({ item }) => item.smiley}
+              yAccessor={({ index }) => index }
               xAccessor={({ item }) => moment(item.time)}
               contentInset={contentInset}
               svg={{ fill: '#003F5A' }}
@@ -74,6 +79,7 @@ class Area extends React.PureComponent {
             >
               <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
               <ChartPoints color="#003F5A" />
+              <Foo/>
               <Tooltip
                 tooltipX={tooltipX}
                 tooltipY={tooltipY}

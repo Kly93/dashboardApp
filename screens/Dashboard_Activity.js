@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import Area from '../src/components/Area';
 import Line from '../src/components/Line';
 import Pie from '../src/components/Pie';

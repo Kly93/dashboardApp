@@ -29,5 +29,7 @@ export default class Dashboard_Activity extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {},
+  mainContainer: {
+    backgroundColor: '#f6f6f6',
+  },
 });

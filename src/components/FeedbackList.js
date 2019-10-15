@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import FeedbackItem from './FeedbackItem';
 import {DataTable} from 'react-native-paper';
@@ -8,11 +8,13 @@ class FeedbackList extends React.Component {
   static propTypes = {
     feedbacks: PropTypes.array.isRequired,
     onItemPress: PropTypes.func.isRequired,
+    onListRefresh: PropTypes.bool.isRequired,
+    onPullDownRefresh: PropTypes.func.isRequired,
   };
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <DataTable>
           <DataTable.Header>
             <DataTable.Title>Feedback</DataTable.Title>
@@ -29,10 +31,19 @@ class FeedbackList extends React.Component {
               onPress={this.props.onItemPress}
             />
           )}
+          refreshing={this.props.onListRefresh}
+          onRefresh={this.props.onPullDownRefresh}
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    backgroundColor: '#fff',
+  },
+});
 
 export default FeedbackList;

@@ -10,6 +10,7 @@ export default class FeedbackList_Activity extends React.Component {
 
   state = {
     feedbacks: [],
+    currentFeedbackId: null,
   };
 
   async componentDidMount() {
@@ -22,7 +23,7 @@ export default class FeedbackList_Activity extends React.Component {
     const feedbacksToDisplay = this.state.feedbacks;
     if (feedbacksToDisplay.length > 0) {
       return (
-        <View>
+        <View style={styles.container}>
           <FeedbackList feedbacks={feedbacksToDisplay} />
         </View>
       );
@@ -33,9 +34,6 @@ export default class FeedbackList_Activity extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f4f6f9',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#f8f9fa',
   },
 });

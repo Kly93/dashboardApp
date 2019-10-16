@@ -10,11 +10,8 @@ state = {
 };
 
 componentDidMount = () => {
-    const count = []
     fetch('http://9e9aada3.ngrok.io/get', { method: 'GET' })
        .then(response => response.json() )
-       .then(foo => count.push(foo.ios))
-       .then(foo2 => count.push(foo2.android))
        .then((responseJson) => {
            console.log(responseJson);
            this.setState({
@@ -29,20 +26,20 @@ componentDidMount = () => {
 render() {
     // Count the amount of OS and display it
     const { countsOs } = this.state;
-    const smiley = countsOs.map((key, value) => (key.os))
-    const data = [ 14, 80 ] 
+    const osString = countsOs.map((key, index) => (key.os))
+    const osCount = osString.map((key, index) => (key.length))
 
     return(
         <View style={{ height: 200, padding: 20 }}>
            <BarChart
                     style={{ flex: 1 }}
-                    data={data.os}
+                    data={osCount}
                     gridMin={0}
                     svg={{ fill: 'rgb(134, 65, 244)' }}
                     />
             <XAxis
                     style={{ marginTop: 10 }}
-                    data={ data.os }
+                    data={ osString }
                     scale={scale.scaleBand}
                     xAccessor={({ item, index }) => item}
                     formatLabel={ (value, index) => value }

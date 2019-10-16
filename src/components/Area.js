@@ -17,11 +17,9 @@ class Area extends React.PureComponent {
 
   componentDidMount = () => {
       // Replace with prod URL 
-         fetch('http://10.24.24.28:8080/get', { method: 'GET' })
+         fetch('http://9e9aada3.ngrok.io/get', { method: 'GET' })
             .then(response => response.json() )
-            .then(data => data.sort((a, b) => {
-                return new Date(a.time) - new Date(b.time);
-              }))
+            
             .then((responseJson) => {
                 console.log(responseJson);
                 this.setState({
@@ -38,13 +36,8 @@ class Area extends React.PureComponent {
     const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
     const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
 
-    const Foo = ({}) => 
-      data.map((item, index) => (
-          console.log(index)
-      ));
-
     const ChartPoints = ({ x, y, color }) =>
-      data.map((item, index) => (
+    data.map((item, index) => (
         <Circle
           key={index}
           cx={x(moment(item.time))}
@@ -75,11 +68,10 @@ class Area extends React.PureComponent {
               svg={{ fill: '#003F5A' }}
               numberOfTicks={10}
               yMin={0}
-              yMax={10}
+              yMax={70}
             >
               <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
               <ChartPoints color="#003F5A" />
-              <Foo/>
               <Tooltip
                 tooltipX={tooltipX}
                 tooltipY={tooltipY}
@@ -106,7 +98,6 @@ class Area extends React.PureComponent {
               </Text>
             </View>
           )}
-          <Text style={styles.heading}>Dates</Text>
         </View>
       </SafeAreaView>
     );

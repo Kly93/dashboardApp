@@ -9,8 +9,13 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
-        fetch('http://10.24.24.28:8080/get', { method: 'GET' })
+        fetch('http://9e9aada3.ngrok.io/get', { method: 'GET' })
            .then(response => response.json() )
+           .then(data =>
+            data.sort((a, b) => {
+              return new Date(a.time) - new Date(b.time);
+            }),
+          )
            .then((responseJson) => {
                console.log(responseJson);
                this.setState({
@@ -23,9 +28,11 @@ class Pie extends React.PureComponent {
          }
 
 render() {
+    // Count the amount of smileys and display it
     const { data } = this.state
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
     const smiley = data.map((key, value) => (key.smiley))
+    const Sampledata = [ 9, 2, 5, 7, 9 ] 
 
     const pieData = smiley
     .filter((value) => value > 0)
@@ -45,9 +52,6 @@ render() {
                 data={ pieData }
                 svg={{ fill: randomColor }}>
                     </PieChart>
-            <Text
-                style={ { fontSize: 25, textAlign: 'center' } }>
-                    Smiley Range</Text>
         </View>
     )
 }

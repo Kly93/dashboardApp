@@ -84,7 +84,7 @@ export default class FeedbackList_Activity extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#e0e2e2',
     padding: 10,
     height: '100%',
   },

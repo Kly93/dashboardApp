@@ -36,21 +36,20 @@ export default class FeedbackList_Activity extends React.Component {
     return true;
   };
 
-  handleRefresh = () => {
-    this.setState(
-      {
-        refreshing: true,
-      },
-      function() {
-        this.state.feedbacks;
-      },
-    );
+  _getFeedbackData = async () => {
+    const _feedbacks = await ajax.getAllFeedbacks();
+    this.setState({feedbacks: _feedbacks});
   };
 
-  async componentDidMount() {
-    const feedbacks = await ajax.getAllFeedbacks();
-    console.log(feedbacks);
-    this.setState({feedbacks});
+  handleRefresh = () => {
+    this.setState({refreshing: true});
+    this._getFeedbackData().then(() => {
+      this.setState({refreshing: false});
+    });
+  };
+
+  componentDidMount() {
+    this._getFeedbackData();
     BackHandler.addEventListener(
       'hardwareBackPress',
       this.unsetCurrentFeedback,
@@ -73,7 +72,7 @@ export default class FeedbackList_Activity extends React.Component {
             feedbacks={feedbacksToDisplay}
             onItemPress={this.setCurrentFeedback}
             onListRefresh={this.state.refreshing}
-            onPullDownRefresh={this.handleRefresh}
+            onPullDownRefresh={this.handleRefresh.bind(this)}
           />
         </View>
       );

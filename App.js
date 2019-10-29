@@ -28,6 +28,7 @@ const DashboardTab = createStackNavigator(
       },
       headerTintColor: '#fff',
       title: 'Dashboard',
+      // header: null, // hides the header bar
     },
   },
 );

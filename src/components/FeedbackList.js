@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet, RefreshControl} from 'react-native';
 import PropTypes from 'prop-types';
 import FeedbackItem from './FeedbackItem';
 import {DataTable} from 'react-native-paper';
@@ -31,8 +31,12 @@ class FeedbackList extends React.Component {
               onPress={this.props.onItemPress}
             />
           )}
-          refreshing={this.props.onListRefresh}
-          onRefresh={this.props.onPullDownRefresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.props.onListRefresh}
+              onRefresh={this.props.onPullDownRefresh}
+            />
+          }
         />
       </View>
     );

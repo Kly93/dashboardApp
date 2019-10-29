@@ -1,6 +1,8 @@
 import React from 'react';
 import { PieChart } from 'react-native-svg-charts';
 import { View, Text } from 'react-native';
+import ajax from './ajaxSmiley';
+
 
 class Pie extends React.PureComponent {
 
@@ -8,19 +10,11 @@ class Pie extends React.PureComponent {
         data: []
     }
     
-    componentDidMount = () => {
-        fetch('http://9e9aada3.ngrok.io/get', { method: 'GET' })
-           .then(response => response.json() )
-           .then((responseJson) => {
-               console.log(responseJson);
-               this.setState({
-                data: responseJson
-               })
-            })
-            .catch((error) => {
-               console.error(error);
-            });
-         }
+    async componentDidMount() {
+        const smileys = await ajax.getAllSmileys();
+        console.log(smileys);
+        this.setState({data : smileys});
+      }
 
 render() {
     // Count the amount of smileys and display it

@@ -4,6 +4,7 @@ import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
 import moment from 'moment';
 import { Circle } from 'react-native-svg';
 import Tooltip from './Tooltip';
+import ajax from './ajaxTimestamp';
 
 const { height } = Dimensions.get('window');
 
@@ -15,21 +16,11 @@ class Area extends React.PureComponent {
     tooltipIndex: null,
   };
 
-  componentDidMount = () => {
-      // Replace with prod URL 
-         fetch('http://9e9aada3.ngrok.io/get', { method: 'GET' })
-            .then(response => response.json() )
-            
-            .then((responseJson) => {
-                console.log(responseJson);
-                this.setState({
-                   data: responseJson
-                })
-             })
-             .catch((error) => {
-                console.error(error);
-             });
-          }
+  async componentDidMount() {
+    const timeStamps = await ajax.getAllTimestamps();
+    console.log(timeStamps);
+    this.setState({data : timeStamps});
+  }
 
   render() {
 

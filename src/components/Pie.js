@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart } from 'react-native-svg-charts';
 import { View, Text } from 'react-native';
-import ajax from './ajaxSmiley';
+import ajax from '../../ajax';
 
 
 class Pie extends React.PureComponent {
@@ -11,7 +11,7 @@ class Pie extends React.PureComponent {
     }
     
     async componentDidMount() {
-        const smileys = await ajax.getAllSmileys();
+        const smileys = await ajax.getAllFeedbacks();
         console.log(smileys);
         this.setState({data : smileys});
       }

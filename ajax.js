@@ -1,4 +1,4 @@
-const apiHost = 'http://10.24.24.28:8080';
+const apiHost = 'http://10.24.24.115:8085';
 
 export default {
   async getAllFeedbacks() {

@@ -4,7 +4,7 @@ import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
 import moment from 'moment';
 import { Circle } from 'react-native-svg';
 import Tooltip from './Tooltip';
-import ajax from './ajaxTimestamp';
+import ajax from '../../ajax';
 
 const { height } = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ class Area extends React.PureComponent {
   };
 
   async componentDidMount() {
-    const timeStamps = await ajax.getAllTimestamps();
+    const timeStamps = await ajax.getAllFeedbacks();
     console.log(timeStamps);
     this.setState({data : timeStamps});
   }

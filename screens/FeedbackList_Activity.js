@@ -13,7 +13,6 @@ export default class FeedbackList_Activity extends React.Component {
     feedbacks: [],
     currentFeedbackId: null,
     loading: false,
-    page: 1,
     refreshing: false,
   };
 

@@ -29,7 +29,7 @@ class FeedbackItem extends React.Component {
           <TouchableOpacity onPress={this.handlePress}>
             <DataTable.Row>
               <DataTable.Cell>{feedback.feedback}</DataTable.Cell>
-              <DataTable.Cell>{feedback.id}</DataTable.Cell>
+              <DataTable.Cell>{feedback.os}</DataTable.Cell>
               <DataTable.Cell>{feedback.time}</DataTable.Cell>
             </DataTable.Row>
           </TouchableOpacity>

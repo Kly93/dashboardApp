@@ -17,8 +17,8 @@ class FeedbackList extends React.Component {
       <View style={styles.container}>
         <DataTable>
           <DataTable.Header>
+            <DataTable.Title>Os</DataTable.Title>
             <DataTable.Title>Feedback</DataTable.Title>
-            <DataTable.Title>OS</DataTable.Title>
             <DataTable.Title>Date</DataTable.Title>
           </DataTable.Header>
         </DataTable>

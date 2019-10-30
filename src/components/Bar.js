@@ -7,21 +7,30 @@ import ajax from '../../ajax';
 class Bar extends React.PureComponent {
 
 state = {
-    data: []
+    android: { android: [] },
+    ios : { ios: [] }
 };
 
 async componentDidMount() {
-    const android = await ajax.getAllFeedbacks();
-    console.log(android);
-    this.setState({data : android});
+    const android = ajax.getAllOSAndroid();
+    this.setState({android : android});
+  }
+
+  async componentDidMount() {
+    const ios = ajax.getAllOSiOS();
+    this.setState({ios : ios});
   }
 
 render() {
-    // Count the amount of OS and display it
-    const { data } = this.state;
-    console.log(data);
-    const osString = data.map((key, index) => (key.os))
-    const osCount = osString.map((key, index) => (key.length))
+    osCount = []
+    const { ios } = this.state
+    const osIos = ios.map((key, index) => (key.ios))
+    osCount.push(osIos)
+
+    const { android } = this.state
+    const osAndroid = android.map((key, index) => (key.android))
+    osCount.push(osAndroid)
+
     const os = ["Android", "iOS"];
 
     return(

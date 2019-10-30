@@ -7,11 +7,11 @@ import ajax from '../../ajax';
 class Pie extends React.PureComponent {
 
     state = {
-        data: []
+        data: { smiley: [] }
     }
     
     async componentDidMount() {
-        const smileys = await ajax.getAllFeedbacks();
+        const smileys = ajax.getAllFeedbacks();
         console.log(smileys);
         this.setState({data : smileys});
       }

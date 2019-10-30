@@ -10,14 +10,14 @@ const { height } = Dimensions.get('window');
 
 class Area extends React.PureComponent {
   state = {
-    data: [],
+    data: { time: [] },
     tooltipX: null,
     tooltipY: null,
     tooltipIndex: null,
   };
 
   async componentDidMount() {
-    const timeStamps = await ajax.getAllFeedbacks();
+    const timeStamps = ajax.getAllFeedbacks();
     console.log(timeStamps);
     this.setState({data : timeStamps});
   }

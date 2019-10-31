@@ -4,30 +4,37 @@ import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
 import moment from 'moment';
 import { Circle } from 'react-native-svg';
 import Tooltip from './Tooltip';
-import ajax from '../../ajax';
 
 const { height } = Dimensions.get('window');
 
 class Area extends React.PureComponent {
   state = {
-    data: { time: [] },
+    data:  [],
     tooltipX: null,
     tooltipY: null,
     tooltipIndex: null,
   };
 
-  async componentDidMount() {
-    const timeStamps = ajax.getAllFeedbacks();
-    console.log(timeStamps);
-    this.setState({data : timeStamps});
-  }
+  componentDidMount = () => {
+    fetch('http://100.71.8.76:8085/get', { method: 'GET' })
+       .then(response => response.json() )
+       .then((responseJson) => {
+           console.log(responseJson);
+           this.setState({
+            data: responseJson
+           })
+        })
+        .catch((error) => {
+           console.error(error);
+        });
+     }
 
   render() {
-
     const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
     const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
 
     const ChartPoints = ({ x, y, color }) =>
+    data.length !== 0 ? (
     data.map((item, index) => (
         <Circle
           key={index}
@@ -44,7 +51,9 @@ class Area extends React.PureComponent {
             })
             }
         />
-      ));
+    ) ) ) : (
+    <Text>No Data available</Text>
+    );
 
     return (
       <SafeAreaView style={{ flex: 1 }}>

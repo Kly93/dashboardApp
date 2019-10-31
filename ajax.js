@@ -1,4 +1,4 @@
-const apiHost = 'http://10.24.24.115:8085';
+const apiHost = 'http://100.71.8.76:8085';
 
 export default {
   async getAllFeedbacks() {
@@ -15,7 +15,6 @@ export default {
     try {
       const response = await fetch(apiHost + '/get/os/android');
       const responseJson = await response.json();
-      console.log(responseJson)
       return responseJson;
     } catch (error) {
       console.error(error);

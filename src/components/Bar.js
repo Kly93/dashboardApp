@@ -1,54 +1,49 @@
 import React from 'react';
-import { BarChart, XAxis } from 'react-native-svg-charts';
+import { Text, BarChart, XAxis } from 'react-native-svg-charts';
 import { View } from 'react-native';
 import * as scale from 'd3-scale';
-import ajax from '../../ajax';
 
 class Bar extends React.PureComponent {
 
 state = {
-    android: { android: [] },
-    ios : { ios: [] }
+    data: []
 };
 
-async componentDidMount() {
-    const android = ajax.getAllOSAndroid();
-    this.setState({android : android});
-  }
-
-  async componentDidMount() {
-    const ios = ajax.getAllOSiOS();
-    this.setState({ios : ios});
-  }
+componentDidMount = () => {
+  fetch('http://100.71.8.76:8085/get', { method: 'GET' })
+     .then(response => response.json() )
+     .then((responseJson) => {
+         console.log(responseJson);
+         this.setState({
+          data: responseJson
+         })
+      })
+      .catch((error) => {
+         console.error(error);
+      });
+   }
 
 render() {
-    osCount = []
-    const { ios } = this.state
-    const osIos = ios.map((key, index) => (key.ios))
-    osCount.push(osIos)
-
-    const { android } = this.state
-    const osAndroid = android.map((key, index) => (key.android))
-    osCount.push(osAndroid)
-
-    const os = ["Android", "iOS"];
+    const { data } = this.state
+    const osString = data.map((key, index) => (key.os))
+    const osCount = osString.map((key, index) => (key.length))
 
     return(
-        <View style={{ height: 200, padding: 20 }}>
+        <View>
            <BarChart
                     style={{ flex: 1 }}
-                    data={osCount}
+                    data={ osCount }
                     gridMin={0}
-                    svg={{ fill: 'rgb(134, 65, 244)' }}
-                    />
+                    svg={{ fill: 'rgb(134, 65, 244)' }}>
+            </BarChart>
             <XAxis
-                    style={{ marginTop: 10 }}
-                    data={ os }
-                    scale={scale.scaleBand}
-                    xAccessor={({ item, index }) => item}
-                    formatLabel={ (value, index) => value }
-                    labelStyle={ { color: 'black' } }
-                    />
+            style={{ marginTop: 10 }}
+            data={ osString }
+            scale={scale.scaleBand}
+            xAccessor={({ item, index }) => item}
+            formatLabel={ (value, index) => value }
+            labelStyle={ { color: 'black' } }>
+            </XAxis>
         </View>
     )
 }

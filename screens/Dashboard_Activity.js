@@ -3,7 +3,6 @@ import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import Area from '../src/components/Area';
 import Bar from '../src/components/Bar';
 import Pie from '../src/components/Pie';
-import Sample from '../src/components/Sample';
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -15,7 +14,7 @@ export default class Dashboard_Activity extends React.Component {
           <View>
           <ScrollView>
           <View>
-          <Text style={styles.text}>Dates</Text>
+          <Text style={styles.text}>Feedbacks this week</Text>
           <Area/>
           </View>
           <View>

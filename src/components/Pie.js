@@ -11,10 +11,9 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
-        fetch('http://100.71.8.76:8085/get', { method: 'GET' })
+        fetch('http://10.30.0.120:8085/get', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
-               console.log(responseJson);
                this.setState({
                 data: responseJson
                })

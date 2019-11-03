@@ -1,7 +1,6 @@
 import React from 'react';
 import { PieChart } from 'react-native-svg-charts';
-import { View, Text } from 'react-native';
-import ajax from '../../ajax';
+import { View } from 'react-native';
 
 
 class Pie extends React.PureComponent {

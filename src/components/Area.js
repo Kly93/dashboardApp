@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Grid } from 'react-native-svg-charts';
+import { AreaChart, Grid, YAxis, XAxis } from 'react-native-svg-charts';
 import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
 import moment from 'moment';
 import { Circle } from 'react-native-svg';
@@ -16,7 +16,7 @@ class Area extends React.PureComponent {
   };
 
   componentDidMount = () => {
-    fetch('http://10.30.0.120:8085/get', { method: 'GET' })
+    fetch('http://10.30.0.120:8085/get/feedbacks', { method: 'GET' })
        .then(response => response.json() )
        .then((responseJson) => {
            this.setState({
@@ -30,6 +30,8 @@ class Area extends React.PureComponent {
 
   render() {
     const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
+    const months = ["Jan", "Feb"];
+    const feedbackAmount = data.map((key, index) => key)
     const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
 
     const ChartPoints = ({ x, y, color }) =>
@@ -59,7 +61,7 @@ class Area extends React.PureComponent {
         <View style={styles.container}>
           {data.length !== 0 ? (
             <AreaChart
-              style={{ height: '70%' }}
+              style={{ height: '100%' }}
               data={data}
               yAccessor={({ index }) => index }
               xAccessor={({ item }) => moment(item.time)}
@@ -67,7 +69,7 @@ class Area extends React.PureComponent {
               svg={{ fill: '#003F5A' }}
               numberOfTicks={10}
               yMin={0}
-              yMax={70}
+              yMax={50}
             >
               <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
               <ChartPoints color="#003F5A" />
@@ -97,6 +99,21 @@ class Area extends React.PureComponent {
               </Text>
             </View>
           )}
+        {data.length !== 0 ? (
+            <YAxis
+            data={ feedbackAmount }
+            yMin={0}
+            style={ { position: 'absolute', top: 0, bottom: 0}}
+            svg={ {
+                fontSize: 8,
+                fill: 'black',
+                stroke: 'black',
+                strokeWidth: 0.5
+            } }
+            ></YAxis>
+        ) : (
+          <Text></Text>
+        )}
         </View>
       </SafeAreaView>
     );

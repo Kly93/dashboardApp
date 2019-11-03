@@ -3,6 +3,8 @@ import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import Area from '../src/components/Area';
 import Bar from '../src/components/Bar';
 import Pie from '../src/components/Pie';
+import Line from '../src/components/Line';
+
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -12,20 +14,24 @@ export default class Dashboard_Activity extends React.Component {
   render() {
     return (
           <View>
-          <ScrollView>
-          <View>
-          <Text style={styles.text}>Feedbacks this week</Text>
-          <Area/>
-          </View>
-          <View>
-          <Text style={styles.text}>Mobile OS</Text>
-          <Bar/>
-          </View>
-          <View>
-          <Text style={styles.text}>Smiley Range</Text>
-          <Pie/>
-          </View>
-          </ScrollView>
+            <ScrollView>
+              <View>
+              <Text style={styles.text}>Feedback amount this week</Text>
+              <Line/>
+              </View>
+              <View>
+              <Text style={styles.text}>Feedback amount this week</Text>
+              <Area/>
+              </View>
+              <View>
+              <Text style={styles.text}>OS distribution</Text>
+              <Bar/>
+              </View>
+              <View>
+              <Text style={styles.text}>Satisfaction index</Text>
+              <Pie/>
+              </View>
+            </ScrollView>
           </View>
     );
   }

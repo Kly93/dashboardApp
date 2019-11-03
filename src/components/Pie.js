@@ -11,7 +11,7 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
-        fetch('http://10.30.0.120:8085/get', { method: 'GET' })
+        fetch('http://10.30.0.120:8085/get/linecount/smiley', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
                this.setState({
@@ -27,9 +27,9 @@ render() {
     // Count the amount of smileys and display it
     const { data } = this.state
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
-    const smiley = data.length !== 0 ? (data.map((key, value) => (key.smiley)) ) : ( [20, 43, 45] );
+    const smileyAmount = data.length !== 0 ? (data.map((key, value) => (key.SmileyRange)) ) : ( [] );
 
-    const pieData = smiley
+    const pieData = smileyAmount
     .filter((value) => value > 0)
     .map((value, index) => ({
         value,

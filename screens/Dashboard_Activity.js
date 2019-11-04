@@ -4,6 +4,9 @@ import Area from '../src/components/Area';
 import Bar from '../src/components/Bar';
 import Pie from '../src/components/Pie';
 import Line from '../src/components/Line';
+import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
+import SamplePieClick from '../src/components/SamplePieClick';
+
 
 
 export default class Dashboard_Activity extends React.Component {
@@ -26,7 +29,7 @@ export default class Dashboard_Activity extends React.Component {
               </View>
               <View>
               <Text style={styles.text}>Satisfaction index</Text>
-              <Pie/>
+              <PieChartWithClickSlices/>
               </View>
             </ScrollView>
           </View>

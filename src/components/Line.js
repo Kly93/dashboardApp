@@ -18,7 +18,6 @@ class ExtrasExample extends React.PureComponent {
                this.setState({
                 data: responseJson
                })
-               console.log(responseJson)
             })
             .catch((error) => {
                console.error(error);

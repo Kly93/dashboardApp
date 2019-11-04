@@ -19,10 +19,7 @@ export default class Dashboard_Activity extends React.Component {
               <Text style={styles.text}>Feedback amount this week</Text>
               <Line/>
               </View>
-              <View>
-              <Text style={styles.text}>Feedback amount this week</Text>
-              <Area/>
-              </View>
+              
               <View>
               <Text style={styles.text}>OS distribution</Text>
               <Bar/>

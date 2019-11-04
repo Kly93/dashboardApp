@@ -1,7 +1,9 @@
 import React from 'react'
-import { LineChart, Grid } from 'react-native-svg-charts'
+import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
+import { View } from 'react-native';
 import * as shape from 'd3-shape'
 import { Circle, G, Line, Rect, Text } from 'react-native-svg'
+import * as scale from 'd3-scale';
 
 class ExtrasExample extends React.PureComponent {
 
@@ -16,6 +18,7 @@ class ExtrasExample extends React.PureComponent {
                this.setState({
                 data: responseJson
                })
+               console.log(responseJson)
             })
             .catch((error) => {
                console.error(error);
@@ -24,6 +27,7 @@ class ExtrasExample extends React.PureComponent {
 
     render() {
         const { data } = this.state;
+        const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         const HorizontalLine = (({ y }) => (
             <Line
@@ -58,7 +62,7 @@ class ExtrasExample extends React.PureComponent {
                         dy={ 20 }
                         alignmentBaseline={ 'middle' }
                         textAnchor={ 'middle' }
-                        stroke={ 'rgb(134, 65, 244)' }
+                        stroke={ 'rgb(52, 235, 149)' }
                     >
                         { `${data[5]}` }
                     </Text>
@@ -73,7 +77,7 @@ class ExtrasExample extends React.PureComponent {
                     <Circle
                         cy={ y(data[ 5 ]) }
                         r={ 6 }
-                        stroke={ 'rgb(134, 65, 244)' }
+                        stroke={ 'rgb(52, 235, 149)' }
                         strokeWidth={ 2 }
                         fill={ 'white' }
                     />
@@ -82,20 +86,42 @@ class ExtrasExample extends React.PureComponent {
         )
 
         return (
-            <LineChart
-                style={{ height: 200 }}
-                data={ data }
-                svg={{
-                    stroke: 'rgb(134, 65, 244)',
-                    strokeWidth: 2,
-                }}
-                contentInset={{ top: 20, bottom: 20 }}
-                curve={ shape.curveLinear }
-            >
-                <Grid/>
-                <HorizontalLine/>
-                <Tooltip/>
-            </LineChart>
+            <View>
+                <LineChart
+                    style={{ height: 200, marginLeft: 10 }}
+                    data={ data }
+                    yMin={0}
+                    svg={{
+                        stroke: 'rgb(52, 235, 149)',
+                        strokeWidth: 2,
+                    }}
+                    contentInset={{ top: 20, bottom: 20 }}
+                    curve={ shape.curveLinear }
+                >
+                    <Grid/>
+                    <HorizontalLine/>
+                    <Tooltip/>
+                </LineChart>
+                <XAxis
+                style={{ marginTop: 10 }}
+                data={ months }
+                formatLabel={ (value, index) => value }
+                xAccessor={({ item, index }) => item}
+                scale={scale.scaleBand}
+                labelStyle={ { color: 'black' } }/>
+                <YAxis
+                    data={ data }
+                    yMin={0}
+                    style={ { position: 'absolute', top: 0, bottom: 0}}
+                    contentInset={ { top: 10, bottom: 10 } }
+                    svg={ {
+                        fontSize: 8,
+                        fill: 'black',
+                        stroke: 'black',
+                        strokeWidth: 0.5
+                    } }
+            ></YAxis>
+             </View>
         )
     }
 

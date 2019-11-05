@@ -1,6 +1,8 @@
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
 import TAappSmileys from '../src/components/TAappsSmileys';
+import TAWords from '../src/components/TAWords';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class TextAnalytics_Activity extends Component {
   static navigationOptions = {
@@ -10,8 +12,12 @@ export default class TextAnalytics_Activity extends Component {
   render() {
     return (
       <View style={styles.MainContainer}>
-        <Text style={styles.heading}>Average smiley per app</Text>
-        <TAappSmileys/>
+        <ScrollView>
+          <View>
+            <Text style={styles.text}>Average smiley per app</Text>
+            <TAappSmileys/>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -22,12 +28,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f4f6f9',
+    padding: 11
   },
-  heading: {
-    fontSize: 25,
-    textAlign: 'center',
-    marginBottom: 20,
-    fontWeight: 'bold',
-    width: 500
-  },
+  text: {
+    fontSize: 24,
+    padding: 10,
+    fontWeight: "bold",
+  }
 });

@@ -51,7 +51,7 @@ class TAappSmileys extends React.PureComponent {
         
 
         return(
-            <View style={{height: 500, width: 400}}>
+            <View style={{height: 500, width: 385}}>
                 <View style={{flex: 1, flexDirection: 'row' }}>
                     <YAxis
                         data={yax}
@@ -68,7 +68,7 @@ class TAappSmileys extends React.PureComponent {
                         yMax={11}/>     
 
                     <BarChart
-                        style={{ width: 375}}
+                        style={{ width: 360}}
                         data={avg}
                         yMin={0}
                         gridMin={0}
@@ -83,7 +83,7 @@ class TAappSmileys extends React.PureComponent {
 
                 <View style={{flex: 1}}>
                     <XAxis
-                        style={{ marginTop: 10, height: 80, width: 375, alignSelf: 'flex-end' }}
+                        style={{ marginTop: 10, height: 80, width: 360, alignSelf: 'flex-end' }}
                         data={ app }
                         scale={scale.scaleBand}
                         xAccessor={({ item, index }) => item}
@@ -95,8 +95,7 @@ class TAappSmileys extends React.PureComponent {
             </View>
 
         )
-}
-
+    }
 }
 
 export default TAappSmileys;

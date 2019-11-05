@@ -19,10 +19,14 @@ class FeedbackList extends React.Component {
           <DataTable.Header>
             <DataTable.Title>Os</DataTable.Title>
             <DataTable.Title>Feedback</DataTable.Title>
-            <DataTable.Title>Date</DataTable.Title>
+            <DataTable.Title
+              style={{flexDirection: 'row', justifyContent: 'center'}}>
+              Date
+            </DataTable.Title>
           </DataTable.Header>
         </DataTable>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={this.props.feedbacks}
           renderItem={({item}) => (
             <FeedbackItem
@@ -47,6 +51,9 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: '#fff',
+    margin: 5,
+    borderRadius: 5,
+    elevation: 10,
   },
 });
 

@@ -34,7 +34,7 @@ class FeedbackItem extends React.Component {
 
   showOnlyDate = date => {
     var text = date;
-    var index = text.substr(11);
+    var index = text.replace(/ .*/, '');
 
     return <Text>{index}</Text>;
   };
@@ -51,7 +51,8 @@ class FeedbackItem extends React.Component {
                 {this.checkOs(feedback.os)}
               </DataTable.Cell>
               <DataTable.Cell>{feedback.feedback}</DataTable.Cell>
-              <DataTable.Cell>
+              <DataTable.Cell
+                style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                 {this.showOnlyDate(feedback.time)}
               </DataTable.Cell>
             </DataTable.Row>

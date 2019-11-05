@@ -14,6 +14,7 @@ export default class FeedbackList_Activity extends React.Component {
     currentFeedbackId: null,
     loading: false,
     refreshing: false,
+    isFeedbackClick: false,
   };
 
   setCurrentFeedback = feadbackId => {
@@ -39,6 +40,8 @@ export default class FeedbackList_Activity extends React.Component {
     const _feedbacks = await ajax.getAllFeedbacks();
     this.setState({feedbacks: _feedbacks});
   };
+
+  handleNewFeedbackBold = () => {};
 
   handleRefresh = () => {
     this.setState({refreshing: true});
@@ -82,8 +85,8 @@ export default class FeedbackList_Activity extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#e0e2e2',
-    padding: 10,
+    backgroundColor: '#fff',
     height: '100%',
+    paddingBottom: 10,
   },
 });

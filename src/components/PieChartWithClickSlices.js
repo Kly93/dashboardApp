@@ -36,7 +36,7 @@ class PieChartWithClickSlices extends React.PureComponent {
     const {label, value} = selectedSlice;
     const keys = [
       'Smiley Range 1',
-      'Smiley Range ',
+      'Smiley Range 2',
       'Smiley Range 3',
       'Smiley Range 4',
       'Smiley Range 5',

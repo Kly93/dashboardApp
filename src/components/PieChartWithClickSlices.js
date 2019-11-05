@@ -89,7 +89,7 @@ import { PieChart } from 'react-native-svg-charts'
           }}
           style={{
             position: 'absolute',
-            left: deviceWidth / 2 - labelWidth / 1.8,
+            left: deviceWidth / 2 - labelWidth / 1.5,
             textAlign: 'center'
           }}>
           {`${label} \n ${value}`}

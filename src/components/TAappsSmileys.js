@@ -1,0 +1,85 @@
+import React from 'react';
+import { BarChart, XAxis, YAxis, Grid } from 'react-native-svg-charts';
+import { View} from 'react-native';
+import * as scale from 'd3-scale';
+
+class TAappSmileys extends React.PureComponent {
+
+    state = {
+        data: []
+    };
+    
+    componentDidMount = () => {
+        fetch('http://7bcc159e.ngrok.io/getAvgPerApp', { method: 'GET' })
+           .then(response => response.json() )
+           .then((responseJson) => {
+               this.setState({
+                data: responseJson
+               })
+            })
+            .catch((error) => {
+               console.error(error);
+            });
+         }
+
+
+    render(){
+        const { data } = this.state;
+        //console.log(data);
+
+        const app = data.map((key, index) => (key.app));
+        const avg = data.map((key, index) => (key.avg));
+        const yax = [2, 4, 6, 8, 10];
+        console.log(avg);
+
+        
+
+        return(
+            <View style={{height: 500, width: 400}}>
+                <View style={{flex: 1, flexDirection: 'row' }}>
+                    <YAxis
+                        data={yax}
+                        style={{
+                            backgroundColor: "turquoise",
+                            width: 25,
+                            paddingHorizontal: 5,
+                        }}
+                        svg={{fontSize: 9, fill: "black"}}
+                        contentInset={{ top: 22, bottom: 45 }}
+                        formatLabel={(value, index) => value}
+                        numberOfTicks={5}
+                        yAccessor={({ item, index }) => item}
+                        yMax={11}/>     
+
+                    <BarChart
+                        style={{ width: 375}}
+                        data={avg}
+                        yMin={0}
+                        gridMin={0}
+                        gridMax={1100}
+                        //showGrid={true}
+                        svg={{ fill: 'rgb(134, 65, 244)' }}>                        
+                        <Grid/>    
+                    </BarChart>
+
+                </View>
+
+                <View style={{flex: 1}}>
+                    <XAxis
+                        style={{ marginTop: 10, height: 80, width: 375, alignSelf: 'flex-end' }}
+                        data={ app }
+                        scale={scale.scaleBand}
+                        xAccessor={({ item, index }) => item}
+                        formatLabel={ (value, index) => value }
+                        labelStyle={ { color: 'black'} }
+                        svg={{ rotation: 50, originY: 30, y: 20 }}
+                    />
+                </View>
+            </View>
+
+        )
+}
+
+}
+
+export default TAappSmileys;

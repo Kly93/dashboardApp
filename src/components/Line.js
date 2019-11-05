@@ -12,7 +12,7 @@ class ExtrasExample extends React.PureComponent {
       };
 
       componentDidMount = () => {
-        fetch('http://10.30.0.120:8085/get/feedbacks', { method: 'GET' })
+        fetch('http://7bcc159e.ngrok.io/get/feedbacks', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
                this.setState({

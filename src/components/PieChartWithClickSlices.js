@@ -22,7 +22,7 @@ import { PieChart } from 'react-native-svg-charts'
   }
 
   componentDidMount = () => {
-    fetch('http://10.30.0.120:8085/get/linecount/smiley', { method: 'GET' })
+    fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', { method: 'GET' })
        .then(response => response.json() )
        .then((responseJson) => {
            this.setState({

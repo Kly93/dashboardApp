@@ -1,6 +1,7 @@
 import React from 'react';
 import { BarChart, XAxis, YAxis, Grid } from 'react-native-svg-charts';
 import { View} from 'react-native';
+import { Text } from 'react-native-svg';
 import * as scale from 'd3-scale';
 
 class TAappSmileys extends React.PureComponent {
@@ -30,8 +31,23 @@ class TAappSmileys extends React.PureComponent {
         const app = data.map((key, index) => (key.app));
         const avg = data.map((key, index) => (key.avg));
         const yax = [2, 4, 6, 8, 10];
-        console.log(avg);
 
+        const CUT_OFF = 20
+        const Labels = ({ x, y, bandwidth, data }) => (
+            data.map((value, index) => (
+                <Text
+                    key={ avg }
+                    x={ x(index) + (bandwidth / 2) }
+                    y={ value < CUT_OFF ? y(value) - 10 : y(value) + 15 }
+                    fontSize={ 14 }
+                    fill={ value >= CUT_OFF ? 'white' : 'black' }
+                    alignmentBaseline={ 'middle' }
+                    textAnchor={ 'middle' }
+                >
+                    {(value/100).toFixed(2)}
+                </Text>
+            ))
+        )
         
 
         return(
@@ -60,6 +76,7 @@ class TAappSmileys extends React.PureComponent {
                         //showGrid={true}
                         svg={{ fill: 'rgb(134, 65, 244)' }}>                        
                         <Grid/>    
+                        <Labels/>
                     </BarChart>
 
                 </View>

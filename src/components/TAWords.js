@@ -5,6 +5,10 @@ import moment from 'moment';
 import { Circle } from 'react-native-svg';
 import Tooltip from './Tooltip';
 
+//
+// This doesn't work since the server won't return anything with the url
+//
+
 
 class TAWords extends React.PureComponent {
     

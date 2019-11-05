@@ -30,9 +30,10 @@ class TAappSmileys extends React.PureComponent {
 
         const app = data.map((key, index) => (key.app));
         const avg = data.map((key, index) => (key.avg));
-        const yax = [2, 4, 6, 8, 10];
+        const yax = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         const CUT_OFF = 20
+        
         const Labels = ({ x, y, bandwidth, data }) => (
             data.map((value, index) => (
                 <Text
@@ -61,9 +62,9 @@ class TAappSmileys extends React.PureComponent {
                             paddingHorizontal: 5,
                         }}
                         svg={{fontSize: 9, fill: "black"}}
-                        contentInset={{ top: 22, bottom: 45 }}
+                        contentInset={{ top: 22, bottom: 22 }}
                         formatLabel={(value, index) => value}
-                        numberOfTicks={5}
+                        numberOfTicks={10}
                         yAccessor={({ item, index }) => item}
                         yMax={11}/>     
 

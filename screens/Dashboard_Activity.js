@@ -16,13 +16,12 @@ export default class Dashboard_Activity extends React.Component {
 
   render() {
     return (
-          <View>
-            <ScrollView>
+          <View style={{ backgroundColor: '#ccc' }}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 5, backgroundColor: '#fff', borderRadius: 5 }}>
               <View>
               <Text style={styles.text}>Feedback amount this week</Text>
               <Line/>
-              </View>
-              
+              </View>              
               <View>
               <Text style={styles.text}>OS distribution</Text>
               <Bar/>

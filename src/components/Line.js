@@ -12,7 +12,7 @@ class ExtrasExample extends React.PureComponent {
       };
 
       componentDidMount = () => {
-        fetch('http://10.30.0.120:8085/get/feedbacks', { method: 'GET' })
+        fetch('http://10.24.24.120:8085/get/feedbacks', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
                this.setState({
@@ -27,19 +27,6 @@ class ExtrasExample extends React.PureComponent {
     render() {
         const { data } = this.state;
         const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-        const HorizontalLine = (({ y }) => (
-            <Line
-                key={ 'zero-axis' }
-                x1={ '0%' }
-                x2={ '100%' }
-                y1={ y(50) }
-                y2={ y(50) }
-                stroke={ 'grey' }
-                strokeDasharray={ [ 4, 8 ] }
-                strokeWidth={ 2 }
-            />
-        ))
 
         const Tooltip = ({ x, y }) => (
             <G
@@ -94,15 +81,14 @@ class ExtrasExample extends React.PureComponent {
                         stroke: 'rgb(52, 235, 149)',
                         strokeWidth: 2,
                     }}
-                    contentInset={{ top: 20, bottom: 20 }}
+                    contentInset={{ top: 20, bottom: 10 }}
                     curve={ shape.curveLinear }
                 >
                     <Grid/>
-                    <HorizontalLine/>
                     <Tooltip/>
                 </LineChart>
                 <XAxis
-                style={{ marginTop: 10 }}
+                style={{ }}
                 data={ months }
                 formatLabel={ (value, index) => value }
                 xAccessor={({ item, index }) => item}
@@ -111,7 +97,7 @@ class ExtrasExample extends React.PureComponent {
                 <YAxis
                     data={ data }
                     yMin={0}
-                    style={ { position: 'absolute', top: 0, bottom: 0}}
+                    style={ { position: 'absolute', top: 0, bottom: 0, marginBottom: 20 }}
                     contentInset={ { top: 10, bottom: 10 } }
                     svg={ {
                         fontSize: 8,

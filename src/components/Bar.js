@@ -10,7 +10,7 @@ state = {
 };
 
 componentDidMount = () => {
-  fetch('http://10.30.0.120:8085/get/os2/android+ios', { method: 'GET' })
+  fetch('http://10.24.24.120:8085/get/os2/android+ios', { method: 'GET' })
      .then(response => response.json() )
      .then((responseJson) => {
          this.setState({
@@ -61,13 +61,13 @@ render() {
             style={{ marginTop: 10 }}
             data={ osString }
             scale={scale.scaleBand}
-            xAccessor={({ item, index }) => item}
+            xAccessor={({ item, index }) => item }
             formatLabel={ (value, index) => value }
             labelStyle={ { color: 'black' } }/>
             <YAxis
             data={ osCount }
             yMin={0}
-            style={ { position: 'absolute', top: 0, bottom: 0}}
+            style={ { position: 'absolute', top: 0, bottom: 20}}
             contentInset={ { top: 10, bottom: 10 } }
             svg={ {
                 fontSize: 8,

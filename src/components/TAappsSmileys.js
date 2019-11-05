@@ -33,7 +33,6 @@ class TAappSmileys extends React.PureComponent {
         const yax = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         const CUT_OFF = 20
-        
         const Labels = ({ x, y, bandwidth, data }) => (
             data.map((value, index) => (
                 <Text
@@ -62,7 +61,7 @@ class TAappSmileys extends React.PureComponent {
                             paddingHorizontal: 5,
                         }}
                         svg={{fontSize: 9, fill: "black"}}
-                        contentInset={{ top: 22, bottom: 22 }}
+                        contentInset={{ top: 22, bottom: 45 }}
                         formatLabel={(value, index) => value}
                         numberOfTicks={10}
                         yAccessor={({ item, index }) => item}
@@ -84,13 +83,13 @@ class TAappSmileys extends React.PureComponent {
 
                 <View style={{flex: 1}}>
                     <XAxis
-                        style={{ marginTop: 10, height: 80, width: 360, alignSelf: 'flex-end' }}
+                        style={{ marginTop: 10, height: 90, width: 360, alignSelf: 'flex-end' }}
                         data={ app }
                         scale={scale.scaleBand}
                         xAccessor={({ item, index }) => item}
                         formatLabel={ (value, index) => value }
                         labelStyle={ { color: 'black'} }
-                        svg={{ rotation: 50, originY: 30, y: 20 }}
+                        svg={{ rotation: 70, originY: 33, y: 20 }}
                     />
                 </View>
             </View>

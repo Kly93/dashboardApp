@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Image} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
@@ -16,6 +16,8 @@ import Dashboard_Activity from './screens/Dashboard_Activity';
 import TextAnalytics_Activity from './screens/TextAnalytics_Activity';
 import FeedbackList_Activity from './screens/FeedbackList_Activity';
 import MorePage_Activity from './screens/MorePage_Activity';
+
+const WIDTH = Dimensions.get('window').width;
 
 const DashboardTab = createStackNavigator(
   {
@@ -27,6 +29,9 @@ const DashboardTab = createStackNavigator(
         backgroundColor: '#4a7bd0',
       },
       headerTintColor: '#fff',
+      headerTitleStyle: {
+        width: WIDTH - 75,
+      },
       title: 'Dashboard',
     },
   },
@@ -42,6 +47,9 @@ const FeedbackListTab = createStackNavigator(
         backgroundColor: '#4a7bd0',
       },
       headerTintColor: '#FFFFFF',
+      headerTitleStyle: {
+        width: WIDTH - 75,
+      },
       title: 'Feedback results',
     },
   },
@@ -57,6 +65,9 @@ const TextAnalyticsTab = createStackNavigator(
         backgroundColor: '#4a7bd0',
       },
       headerTintColor: '#FFFFFF',
+      headerTitleStyle: {
+        width: WIDTH - 75,
+      },
       title: 'Text analytics',
     },
   },
@@ -72,6 +83,9 @@ const MorePageTab = createStackNavigator(
         backgroundColor: '#4a7bd0',
       },
       headerTintColor: '#FFFFFF',
+      headerTitleStyle: {
+        width: WIDTH - 75,
+      },
       title: 'Profile',
     },
   },

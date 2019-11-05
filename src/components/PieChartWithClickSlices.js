@@ -36,12 +36,12 @@ import { PieChart } from 'react-native-svg-charts'
 
   render() {
     const { data } = this.state;
-    const smileyRangeCount = data.map((key, value) => value)
+    const smileyRangeCount = data.map((key, value) => key.SmileyRange)
 
     const { labelWidth, selectedSlice } = this.state;
     const { label, value } = selectedSlice;
-    const keys = ['Smiley', 'Smiley', 'Smiley', 'Smiley', 'Smiley', 'Smiley', 'Smiley', 'Smiley', 'Smiley','Smiley'];
-    const colors = ['#600080', '#9900cc', '#c61aff', '#d966ff', '#ecb3ff', '#600080', '#9900cc', '#c61aff', '#d966ff', '#ecb3ff']
+    const keys = ['Smiley Range 1', 'Smiley Range 2', 'Smiley Range 3', 'Smiley Range 4', 'Smiley Range 5', 'Smiley Range 6', 'Smiley Range 7', 'Smiley Range 8', 'Smiley Range 9','Smiley Range 10'];
+    const colors = ['#ecb3ff', '#9900cc', '#c61aff', '#d966ff', '#ecb3ff', '#600080', '#9900cc', '#c61aff', '#d966ff', '#ecb3ff']
     const smileyData = keys.map((key, index) => {
         return {
           key,

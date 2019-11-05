@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
-import Area from '../src/components/Area';
-import Bar from '../src/components/Bar';
-import Pie from '../src/components/Pie';
-import Line from '../src/components/Line';
-import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
-import SamplePieClick from '../src/components/SamplePieClick';
+import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 
-
+const data = [
+  { quarter: 1, earnings: 13000 },
+  { quarter: 2, earnings: 16500 },
+  { quarter: 3, earnings: 14250 },
+  { quarter: 4, earnings: 19000 }
+];
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -16,25 +16,14 @@ export default class Dashboard_Activity extends React.Component {
 
   render() {
     return (
-          <View style={{ backgroundColor: '#ccc' }}>
-            <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 5, backgroundColor: '#fff', borderRadius: 5 }}>
-              <View>
-              <Text style={styles.text}>Feedback amount this week</Text>
-              <Line/>
-              </View>              
-              <View>
-              <Text style={styles.text}>OS distribution</Text>
-              <Bar/>
-              </View>
-              <View>
-              <Text style={styles.text}>Satisfaction index</Text>
-              <PieChartWithClickSlices/>
-              </View>
-            </ScrollView>
-          </View>
+      <View style={styles.container}>
+        <VictoryChart width={350} theme={VictoryTheme.material}>
+          <VictoryBar data={data} x="quarter" y="earnings" />
+        </VictoryChart>
+      </View>
     );
   }
-}
+  }
 
 const styles = StyleSheet.create({
   mainContainer: {

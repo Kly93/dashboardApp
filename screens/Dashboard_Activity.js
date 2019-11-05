@@ -9,6 +9,32 @@ export default class Dashboard_Activity extends React.Component {
     title: 'Dashboard',
   };
 
+  state = {
+    feedbacks: [],
+    refreshing: false,
+    loading: false
+  };
+
+  handleRefresh = () => {
+    this.setState({refreshing: true});
+    this._getFeedbackData().then(() => {
+      this.setState({refreshing: false});
+    });
+  };
+
+  componentDidMount = () => {
+    fetch('http://7bcc159e.ngrok.io/get', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          feedbacks: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   render() {
     return (
       <View style={{backgroundColor: '#fff'}}>

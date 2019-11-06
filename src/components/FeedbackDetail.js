@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import ajax from '../../ajax';
+import Smiley from './Smiley';
 
 class FeedbackDetail extends React.Component {
   static propTypes = {
@@ -45,6 +46,9 @@ class FeedbackDetail extends React.Component {
             <Text style={{paddingVertical: 25}}>
               <Text style={styles.fontBold}>Smiley: </Text> {feedback.smiley}
             </Text>
+            <View style={{position: 'absolute', right: 10, top: 10}}>
+              <Smiley userInput={feedback.smiley} />
+            </View>
             <View
               style={{
                 borderBottomColor: '#e9e9e9',
@@ -92,6 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     elevation: 5,
     margin: 5,
+    position: 'relative',
   },
   header1: {
     fontSize: 30,

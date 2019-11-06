@@ -8,7 +8,7 @@ import * as scale from 'd3-scale';
 class ExtrasExample extends React.PureComponent {
 
     state = {
-        data:  []
+        feedbacks:  []
       };
 
       componentDidMount = () => {
@@ -16,7 +16,7 @@ class ExtrasExample extends React.PureComponent {
            .then(response => response.json() )
            .then((responseJson) => {
                this.setState({
-                data: responseJson
+                feedbacks: responseJson
                })
             })
             .catch((error) => {
@@ -24,8 +24,12 @@ class ExtrasExample extends React.PureComponent {
             });
          }
 
+    _updateState(newFeedbacks) {
+        this.setState({ feedbacks: newFeedbacks })
+    }
+
     render() {
-        const { data } = this.state;
+        const { feedbacks } = this.state;
         const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         const Tooltip = ({ x, y }) => (
@@ -50,18 +54,18 @@ class ExtrasExample extends React.PureComponent {
                         textAnchor={ 'middle' }
                         stroke={ 'rgb(52, 235, 149)' }
                     >
-                        { `${data[5]}` }
+                        { `${feedbacks[5]}` }
                     </Text>
                 </G>
                 <G x={ 75 / 2 }>
                     <Line
                         y1={ 50 + 40 }
-                        y2={ y(data[ 5 ]) }
+                        y2={ y(feedbacks[ 5 ]) }
                         stroke={ 'grey' }
                         strokeWidth={ 2 }
                     />
                     <Circle
-                        cy={ y(data[ 5 ]) }
+                        cy={ y(feedbacks[ 5 ]) }
                         r={ 6 }
                         stroke={ 'rgb(52, 235, 149)' }
                         strokeWidth={ 2 }
@@ -75,7 +79,7 @@ class ExtrasExample extends React.PureComponent {
             <View>
                 <LineChart
                     style={{ height: 200, marginLeft: 10 }}
-                    data={ data }
+                    data={ feedbacks }
                     yMin={0}
                     svg={{
                         stroke: 'rgb(52, 235, 149)',
@@ -95,7 +99,7 @@ class ExtrasExample extends React.PureComponent {
                 scale={scale.scaleBand}
                 labelStyle={ { color: 'black' } }/>
                 <YAxis
-                    data={ data }
+                    data={ feedbacks }
                     yMin={0}
                     style={ { position: 'absolute', top: 0, bottom: 0, marginBottom: 20 }}
                     contentInset={ { top: 10, bottom: 10 } }

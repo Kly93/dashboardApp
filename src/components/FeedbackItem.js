@@ -10,7 +10,7 @@ class FeedbackItem extends React.Component {
 
   onPressItem = (item) => {
     const email = item.email;
-    console.log("onPress email with item: " + item.email);
+    //console.log("onPress email with item: " + item.email);
     this.props.navigation.navigate('Detail', {item: item})
   }
   

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import TAappSmileys from '../src/components/TAappsSmileys';
 import TAWords from '../src/components/TAWords';
 import { ScrollView } from 'react-native-gesture-handler';
+import TACatDistr from '../src/components/TACatDistr';
 
 export default class TextAnalytics_Activity extends Component {
   static navigationOptions = {
@@ -11,11 +12,15 @@ export default class TextAnalytics_Activity extends Component {
 
   render() {
     return (
-      <View style={styles.MainContainer}>
+      <View>
         <ScrollView>
           <View>
             <Text style={styles.text}>Average smiley per app</Text>
             <TAappSmileys/>
+          </View>
+          <View>
+            <Text style={styles.text}>Category distribution</Text>
+            <TACatDistr/>
           </View>
         </ScrollView>
       </View>

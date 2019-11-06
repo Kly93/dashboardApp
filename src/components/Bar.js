@@ -30,7 +30,7 @@ render() {
     const osCountiOS = data.map((key, index) => key.ios)
     osCount.push(osCountAndroid[0])
     osCount.push(osCountiOS[0])
-    console.log(osCount)
+    //console.log(osCount)
 
     const Labels = ({ data }) => (
         data.map((value, index) => (

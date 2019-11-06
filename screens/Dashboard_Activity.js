@@ -19,18 +19,20 @@ export default class Dashboard_Activity extends React.Component {
           <View>
             <ScrollView>
               <View>
-              <Text style={styles.text}>Feedback amount this week</Text>
-              <Line/>
+                <Text style={styles.text}>Feedback amount this week</Text>
+                <Line/>
               </View>
               
               <View>
-              <Text style={styles.text}>OS distribution</Text>
-              <Bar/>
+                <Text style={styles.text}>OS distribution</Text>
+                <Bar/>
               </View>
+
               <View>
-              <Text style={styles.text}>Satisfaction index</Text>
-              <PieChartWithClickSlices/>
+                <Text style={styles.text}>Satisfaction index</Text>
+                <PieChartWithClickSlices/>
               </View>
+            
             </ScrollView>
           </View>
     );

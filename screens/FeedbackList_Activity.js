@@ -14,7 +14,7 @@ export default class FeedbackList_Activity extends React.Component {
 
   async componentDidMount() {
     const feedbacks = await ajax.getAllFeedbacks();
-    console.log(feedbacks);
+    //console.log(feedbacks);
     this.setState({feedbacks});
   }
 

@@ -48,11 +48,10 @@ class TAappSmileys extends React.PureComponent {
                 </Text>
             ))
         )
-        
 
         return(
-            <View style={{height: 500, width: 385}}>
-                <View style={{flex: 1, flexDirection: 'row' }}>
+            <View style={{flex: 1}}>
+                <View style={{height: 250, width: 385, paddingLeft: 10, flexDirection: 'row' }}>
                     <YAxis
                         data={yax}
                         style={{
@@ -61,7 +60,7 @@ class TAappSmileys extends React.PureComponent {
                             paddingHorizontal: 5,
                         }}
                         svg={{fontSize: 9, fill: "black"}}
-                        contentInset={{ top: 22, bottom: 45 }}
+                        contentInset={{ top: 22, bottom: 22 }}
                         formatLabel={(value, index) => value}
                         numberOfTicks={10}
                         yAccessor={({ item, index }) => item}
@@ -89,7 +88,7 @@ class TAappSmileys extends React.PureComponent {
                         xAccessor={({ item, index }) => item}
                         formatLabel={ (value, index) => value }
                         labelStyle={ { color: 'black'} }
-                        svg={{ rotation: 70, originY: 33, y: 20 }}
+                        svg={{ rotation: 70, originY: 25, y: 30 }}
                     />
                 </View>
             </View>

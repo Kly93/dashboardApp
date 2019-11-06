@@ -1,5 +1,5 @@
-const apiHost = 'http://10.24.24.241:8085';
-// const apiHost = 'http://a39de6a7.ngrok.io';
+//const apiHost = 'http://10.24.24.241:8085';
+const apiHost = 'http://7bcc159e.ngrok.io';
 
 export default {
   async getAllFeedbacks() {

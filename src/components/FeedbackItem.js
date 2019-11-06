@@ -48,11 +48,13 @@ class FeedbackItem extends React.Component {
           <TouchableOpacity onPress={this.handlePress}>
             <DataTable.Row>
               <DataTable.Cell style={{paddingBottom: 20}}>
-                {this.checkOs(feedback.os)}
+                <Text>{this.checkOs(feedback.os)}</Text>
               </DataTable.Cell>
-              <DataTable.Cell>{feedback.feedback}</DataTable.Cell>
               <DataTable.Cell>
-                {this.showOnlyDate(feedback.time)}
+                <Text>{feedback.feedback}</Text>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Text> {this.showOnlyDate(feedback.time)}</Text>
               </DataTable.Cell>
             </DataTable.Row>
           </TouchableOpacity>
@@ -67,6 +69,12 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     resizeMode: 'contain',
+  },
+  textNormal: {
+    fontWeight: 'normal',
+  },
+  textBold: {
+    fontWeight: 'bold',
   },
 });
 

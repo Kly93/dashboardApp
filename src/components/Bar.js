@@ -10,7 +10,7 @@ state = {
 };
 
 componentDidMount = () => {
-  fetch('http://10.24.24.120:8085/get/os2/android+ios', { method: 'GET' })
+  fetch('http://7bcc159e.ngrok.io/get/os2/android+ios', { method: 'GET' })
      .then(response => response.json() )
      .then((responseJson) => {
          this.setState({
@@ -30,16 +30,16 @@ render() {
     const osCountiOS = data.map((key, index) => key.ios)
     osCount.push(osCountAndroid[0])
     osCount.push(osCountiOS[0])
-    console.log(osCount)
 
-    const Labels = ({ data }) => (
+    const CUT_OFF = 20
+    const Labels = ({ x, y, bandwidth, data }) => (
         data.map((value, index) => (
             <Text
                 key={ index }
-                x={ value }
-                y={ value }
-                fontSize={ 20 }
-                fill={ 'white' }
+                x={ x(index) + (bandwidth / 2) }
+                y={ value < CUT_OFF ? y(value) - 10 : y(value) + 15 }
+                fontSize={ 14 }
+                fill={ value >= CUT_OFF ? 'white' : 'black' }
                 alignmentBaseline={ 'middle' }
                 textAnchor={ 'middle' }
             >
@@ -49,12 +49,14 @@ render() {
     )
 
     return(
-        <View>
+        <View >
           <BarChart
-                    yMin={0}
-                    style={{ height: 200, min: 0, marginLeft: 5 }}
-                    data={ osCount }
-                    svg={{ fill: 'rgb(134, 65, 244)' }}>
+                yMin={0}
+                style={{ height: 200, min: 0, marginLeft: 5 }}
+                data={ osCount }
+                svg={{ fill: 'rgb(134, 65, 244)' }}
+                gridMin={0}
+                >
             <Grid/>
             </BarChart>
             <XAxis
@@ -65,6 +67,7 @@ render() {
             formatLabel={ (value, index) => value }
             labelStyle={ { color: 'black' } }/>
             <YAxis
+            style={{ marginBottom: 50 }}
             data={ osCount }
             yMin={0}
             style={ { position: 'absolute', top: 0, bottom: 20}}

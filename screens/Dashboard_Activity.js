@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native';
 import Bar from '../src/components/Bar';
-import Line from '../src/components/Line';
+import FeedbacksInLineChart from '../src/components/FeedbacksInLineChart';
 import PropTypes from 'prop-types';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
-import { LineChart } from 'react-native-svg-charts'
 
+const apiHost = "http://7bcc159e.ngrok.io/get";
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
     title: 'Dashboard',
   };
 
-  static propTypes = {
-    onListRefresh: PropTypes.bool.isRequired,
-    onItemPress: PropTypes.func.isRequired,
-    onPullDownRefresh: PropTypes.func.isRequired,
-}
+  constructor(props) {    
+    super(props)    
+   Obj = new FeedbacksInLineChart();
+ 
+  }
 
   state = {
     feedbacks: [],
@@ -26,39 +26,12 @@ export default class Dashboard_Activity extends React.Component {
     refreshing: false
   };
 
-  _getFeedbackData = async () => {
-       componentDidMount = () => {
-        fetch('http://10.24.24.120:8085/get/os2/android+ios', { method: 'GET' })
-           .then(response => response.json() )
-           .then((responseJson) => {
-               this.setState({
-                os: responseJson
-               })
-            })
-            .catch((error) => {
-               console.error(error);
-            });
-         }
-         componentDidMount = () => {
-          fetch('http://10.24.24.120:8085/get/linecount/smiley', { method: 'GET' })
-             .then(response => response.json() )
-             .then((responseJson) => {
-                 this.setState({
-                  smileys: responseJson
-                 })
-              })
-              .catch((error) => {
-                 console.error(error);
-              });
-           }
-  };
-
   componentDidMount() {
     this._getFeedbackAmountPerMonth();
   }
 
   _getFeedbackAmountPerMonth = async () => {
-    fetch('http://7bcc159e.ngrok.io/get/feedbacks', { method: 'GET' })
+    fetch( apiHost + '/feedbacks', { method: 'GET' })
     .then(response => response.json() )
     .then((responseJson) => {
         this.setState({
@@ -78,11 +51,13 @@ export default class Dashboard_Activity extends React.Component {
     });
   };
 
-  
-
   render() {
     const feedbacksToDisplay = this.state.feedbacks;
-    console.log("New feedbacks :" + feedbacksToDisplay)
+
+    _updateFeedbacksForLine = () => {
+      Obj._updateFeedbacksForLine(feedbacksToDisplay)
+    }
+
     return (
       <View style={{backgroundColor: '#fff'}}>
         <ScrollView
@@ -92,15 +67,20 @@ export default class Dashboard_Activity extends React.Component {
                     onRefresh={ () => this.handleRefresh() }
                   />
           }
+         
           showsVerticalScrollIndicator={false}
           style={{backgroundColor: '#fff', borderRadius: 5}}
          >
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this week</Text>
-            <Line 
-              data={feedbacksToDisplay}
+            <FeedbacksInLineChart 
+              feedbacks={feedbacksToDisplay}
               onListRefresh={this.state.refreshing}
-            />
+              onPullDownRefresh={this.handleRefresh.bind(this)}
+              data={feedbacksToDisplay}
+              onListRefresh={this.state.refreshing}>
+            </FeedbacksInLineChart>
+            
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>

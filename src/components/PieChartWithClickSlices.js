@@ -4,7 +4,7 @@ import {
   View,
   Dimensions
 } from 'react-native';
-import { PieChart } from 'react-native-svg-charts'
+import { PieChart } from 'react-native-svg-charts';
 
 
  class PieChartWithClickSlices extends React.PureComponent {
@@ -22,7 +22,7 @@ import { PieChart } from 'react-native-svg-charts'
   }
 
   componentDidMount = () => {
-    fetch('http://10.24.24.120:8085/get/linecount/smiley', { method: 'GET' })
+    fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', { method: 'GET' })
        .then(response => response.json() )
        .then((responseJson) => {
            this.setState({
@@ -37,7 +37,7 @@ import { PieChart } from 'react-native-svg-charts'
   render() {
     const { data } = this.state;
     const smileyRangeCount = data.map((key, value) => key.SmileyRange)
-
+  
     const { labelWidth, selectedSlice } = this.state;
     const { label, value } = selectedSlice;
     const keys = ['Smiley Range 1', 'Smiley Range 2', 'Smiley Range 3', 'Smiley Range 4', 'Smiley Range 5', 'Smiley Range 6', 'Smiley Range 7', 'Smiley Range 8', 'Smiley Range 9','Smiley Range 10'];
@@ -81,7 +81,6 @@ import { PieChart } from 'react-native-svg-charts'
           outerRadius={'80%'}
           innerRadius={'45%'}
           data={smileyData}>
-            <Labels/>
           </PieChart>
         <Text
           onLayout={({ nativeEvent: { layout: { width } } }) => {

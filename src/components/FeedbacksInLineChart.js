@@ -4,15 +4,27 @@ import { View } from 'react-native';
 import * as shape from 'd3-shape'
 import { Circle, G, Line, Rect, Text } from 'react-native-svg'
 import * as scale from 'd3-scale';
+import PropTypes from 'prop-types';
 
-class ExtrasExample extends React.PureComponent {
 
-    state = {
-        feedbacks:  []
+class FeedbacksInLineChart extends React.PureComponent {
+
+    static propTypes = {
+        onListRefresh: PropTypes.bool.isRequired,
+        onPullDownRefresh: PropTypes.func.isRequired,
       };
 
+      state = {
+        feedbacks: []
+      };
+
+      _updateFeedbacks = (newFeedbacks) => {
+        this.state( { feedbacks: newFeedbacks });
+        console.log(feedbacks)
+    }
+
       componentDidMount = () => {
-        fetch('http://10.24.24.120:8085/get/feedbacks', { method: 'GET' })
+        fetch('http://7bcc159e.ngrok.io/get/feedbacks', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
                this.setState({
@@ -24,9 +36,6 @@ class ExtrasExample extends React.PureComponent {
             });
          }
 
-    _updateState(newFeedbacks) {
-        this.setState({ feedbacks: newFeedbacks })
-    }
 
     render() {
         const { feedbacks } = this.state;
@@ -89,7 +98,7 @@ class ExtrasExample extends React.PureComponent {
                     curve={ shape.curveLinear }
                 >
                     <Grid/>
-                    <Tooltip/>
+                    
                 </LineChart>
                 <XAxis
                 style={{ }}
@@ -99,7 +108,7 @@ class ExtrasExample extends React.PureComponent {
                 scale={scale.scaleBand}
                 labelStyle={ { color: 'black' } }/>
                 <YAxis
-                    data={ feedbacks }
+                    data={ feedbacks  }
                     yMin={0}
                     style={ { position: 'absolute', top: 0, bottom: 0, marginBottom: 20 }}
                     contentInset={ { top: 10, bottom: 10 } }
@@ -116,4 +125,4 @@ class ExtrasExample extends React.PureComponent {
 
 }
 
-export default ExtrasExample
+export default FeedbacksInLineChart

@@ -1,9 +1,6 @@
-import Pie from "react-native-pie";
-
 import React from 'react';
-import { PieChart } from 'react-native-svg-charts';
 import { View, StyleSheet} from 'react-native';
-import { VictoryPie } from 'victory-native';
+import { VictoryPie, VictoryLabel } from 'victory-native';
 import { Text } from 'react-native-svg';
 import * as scale from 'd3-scale';
 
@@ -40,18 +37,19 @@ class TACatDistr extends React.PureComponent {
             <View style={{height: 400, width: 300}}>
                 <VictoryPie
                     data={[
-                        { x: "Feedback", y: feedb[0] },
-                        { x: "Suggestion", y: sugg[0] },
-                        { x: "Bug report", y: bugr[0] }
+                        { x: "Feedback:\n"+feedb[0], y: feedb[0] },
+                        { x: "Bug report:\n"+bugr[0], y: bugr[0] },
+                        { x: "Suggestion:\n"+sugg[0], y: sugg[0] },
                     ]}
                     style={{labels: {
                         fontSize: 16, fontWeight: "bold"}}
                     }
-                    labelRadius={({ innerRadius }) => innerRadius + 110 }
-                    labels={({ datum }) => `${datum.x}:\n ${datum.y}`}
-                    colorScale={["turquoise", "lavender", "gray"]}
+                    padAngle={1}
+                    innerRadius={30}
+                    labelRadius={80}
+                    colorScale={["turquoise", "lightgray", "lavender"]}
                 />
-
+                    {/* ({ innerRadius }) => innerRadius + 110  */}
             </View>
       )
     }

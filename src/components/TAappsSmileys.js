@@ -80,15 +80,15 @@ class TAappSmileys extends React.PureComponent {
 
                 </View>
 
-                <View style={{flex: 1}}>
+                <View style={{height: 90, width: 385, marginLeft: 25, marginTop: 10}}>
                     <XAxis
-                        style={{ marginTop: 10, height: 90, width: 360, alignSelf: 'flex-end' }}
+                        style={{height: 90, width: 360, alignSelf: 'flex-end' }}
                         data={ app }
                         scale={scale.scaleBand}
                         xAccessor={({ item, index }) => item}
                         formatLabel={ (value, index) => value }
                         labelStyle={ { color: 'black'} }
-                        svg={{ rotation: 70, originY: 25, y: 30 }}
+                        svg={{ rotation: 70, originY: 28, y: 30 }}
                     />
                 </View>
             </View>

@@ -5,7 +5,7 @@ import * as shape from 'd3-shape';
 import {Circle, G, Line, Rect, Text} from 'react-native-svg';
 import * as scale from 'd3-scale';
 
-class ExtrasExample extends React.PureComponent {
+class FeedbacksInLineChart extends React.PureComponent {
   state = {
     data: [],
   };
@@ -115,4 +115,4 @@ class ExtrasExample extends React.PureComponent {
   }
 }
 
-export default ExtrasExample;
+export default FeedbacksInLineChart;

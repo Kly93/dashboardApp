@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {ScrollView, StyleSheet, View, Text} from 'react-native';
-import Area from '../src/components/Area';
 import Bar from '../src/components/Bar';
-import Pie from '../src/components/Pie';
 import Line from '../src/components/Line';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
-import SamplePieClick from '../src/components/SamplePieClick';
 
 
 

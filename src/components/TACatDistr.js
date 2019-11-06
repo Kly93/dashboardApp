@@ -36,7 +36,7 @@ class TACatDistr extends React.PureComponent {
          
         return (
             <View style={{flexDirection: 'row'}}>
-                <View style={{flexDirection: 'column', width: 150, height: 400, paddingLeft: 10, paddingTop: 10}}>
+                <View style={{flexDirection: 'column', width: 150, height: 400, paddingLeft: 10, paddingTop: 5}}>
                     <View style={styles.boxes}>
                         <View style={{width: 20, height: 20, backgroundColor: 'turquoise', marginTop: 7}}/>
                         <Text style={styles.text}>Feedback {feP}%</Text>

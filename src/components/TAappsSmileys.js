@@ -32,6 +32,12 @@ class TAappSmileys extends React.PureComponent {
         const avg = data.map((key, index) => (key.avg));
         const yax = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+        for (let i = 0; i < app.length; i++){
+            if(app[i] == ""){
+                app[i] = "(No app)"
+            }
+        }
+
         const CUT_OFF = 20
         const Labels = ({ x, y, bandwidth, data }) => (
             data.map((value, index) => (
@@ -50,7 +56,7 @@ class TAappSmileys extends React.PureComponent {
         )
 
         return(
-            <View style={{flex: 1}}>
+            <View>
                 <View style={{height: 250, width: 385, paddingLeft: 10, flexDirection: 'row' }}>
                     <YAxis
                         data={yax}

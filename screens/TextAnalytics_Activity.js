@@ -28,13 +28,6 @@ export default class TextAnalytics_Activity extends Component {
   }
 }
 const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f4f6f9',
-    padding: 11
-  },
   text: {
     fontSize: 24,
     padding: 10,

@@ -10,50 +10,13 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   state = {
-    feedbacks: [],
-    refreshing: false,
-    loading: false
-  };
-
-  handleRefresh = () => {
-    this.setState({refreshing: true});
-    this._getFeedbackData().then(() => {
-      this.setState({refreshing: false});
-    });
-  };
-
-  componentDidMount = () => {
-    fetch('http://7bcc159e.ngrok.io/get', {method: 'GET'})
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          feedbacks: responseJson,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    refreshing: false
   };
 
   render() {
     return (
       <View style={{backgroundColor: '#fff'}}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={{backgroundColor: '#fff', borderRadius: 5}}>
-          <View style={styles.panel}>
-            <Text style={styles.text}>Feedback amount this week</Text>
-            <Line />
-          </View>
-          <View style={styles.panel}>
-            <Text style={styles.text}>OS distribution</Text>
-            <Bar />
-          </View>
-          <View style={styles.panel}>
-            <Text style={styles.text}>Satisfaction index</Text>
-            <PieChartWithClickSlices />
-          </View>
-        </ScrollView>
+       
       </View>
     );
   }

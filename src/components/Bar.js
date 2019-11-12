@@ -10,7 +10,7 @@ state = {
 };
 
 componentDidMount = () => {
-  fetch('http://7bcc159e.ngrok.io/get/os2/android+ios', { method: 'GET' })
+  fetch('http://7a7333dc.ngrok.io/get/os2/android+ios', { method: 'GET' })
      .then(response => response.json() )
      .then((responseJson) => {
          this.setState({

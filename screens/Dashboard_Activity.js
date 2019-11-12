@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native';
 import Bar from '../src/components/Bar';
 import FeedbacksInLineChart from '../src/components/FeedbacksInLineChart';
-import PropTypes from 'prop-types';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const apiHost = "http://7bcc159e.ngrok.io/get";
+const apiHost = "http://7a7333dc.ngrok.io/get";
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -41,6 +41,14 @@ export default class Dashboard_Activity extends React.Component {
      .catch((error) => {
         console.error(error);
      });
+  }
+
+  storeData = async () => {
+    try {
+      await AsyncStorage.setItem('@feedbackAmount', 'stored value')
+    } catch (e) {
+      console.error(e);
+    }
   }
 
 

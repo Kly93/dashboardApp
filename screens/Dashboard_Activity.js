@@ -5,7 +5,7 @@ import FeedbacksInLineChart from '../src/components/FeedbacksInLineChart';
 import PropTypes from 'prop-types';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
 
-const apiHost = 'http://7bcc159e.ngrok.io/get';
+const apiHost = 'http://7a7333dc.ngrok.io/get';
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {

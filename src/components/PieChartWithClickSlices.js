@@ -16,7 +16,7 @@ class PieChartWithClickSlices extends React.PureComponent {
   }
 
   componentDidMount = () => {
-    fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', {method: 'GET'})
+    fetch('http://7a7333dc.ngrok.io/get/linecount/smiley', {method: 'GET'})
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

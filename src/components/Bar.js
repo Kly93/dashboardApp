@@ -2,29 +2,37 @@ import React from 'react';
 import { Grid, BarChart, XAxis, YAxis } from 'react-native-svg-charts';
 import { View, Text } from 'react-native';
 import * as scale from 'd3-scale';
+import AsyncStorage from '@react-native-community/async-storage';
+import PropTypes from 'prop-types';
+
 
 class Bar extends React.PureComponent {
 
-state = {
-    data: []
-};
+  static propTypes = {
+    os: PropTypes.array.isRequired,
+    onListRefresh: PropTypes.bool.isRequired,
+    onPullDownRefresh: PropTypes.func.isRequired,
+  };
 
-componentDidMount = () => {
-  fetch('http://7a7333dc.ngrok.io/get/os2/android+ios', { method: 'GET' })
-     .then(response => response.json() )
-     .then((responseJson) => {
-         this.setState({
-          data: responseJson
-         })
-      })
-      .catch((error) => {
-         console.error(error);
-      });
-   }
+   storeData = async () => {
+    try {
+      await AsyncStorage.setItem('@os', this.state.data)
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
 render() {
+
+    const getOS = async () => {
+        try {
+            this.os = await AsyncStorage.getItem('os') || 'none';
+        } catch (error) {
+          console.log(error.message);
+        }  return os;
+      }
+    const data = this.props.os
     const osCount = []
-    const { data } = this.state
     const osString = ["Android", "iOS"]
     const osCountAndroid = data.map((key, index) => key.android)
     const osCountiOS = data.map((key, index) => key.ios)

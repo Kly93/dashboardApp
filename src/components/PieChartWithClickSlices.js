@@ -5,14 +5,19 @@ import {
   Dimensions
 } from 'react-native';
 import { PieChart } from 'react-native-svg-charts';
-
+import PropTypes from 'prop-types';
 
  class PieChartWithClickSlices extends React.PureComponent {
+
+  static propTypes = {
+    smileys: PropTypes.array.isRequired,
+    onListRefresh: PropTypes.bool.isRequired,
+    onPullDownRefresh: PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      data : [],
       selectedSlice: {
         label: '',
         value: 0
@@ -21,21 +26,8 @@ import { PieChart } from 'react-native-svg-charts';
     }
   }
 
-  componentDidMount = () => {
-    fetch('http://7a7333dc.ngrok.io/get/linecount/smiley', { method: 'GET' })
-       .then(response => response.json() )
-       .then((responseJson) => {
-           this.setState({
-            data: responseJson
-           })
-        })
-        .catch((error) => {
-           console.error(error);
-        });
-     }
-
   render() {
-    const { data } = this.state;
+    const data = this.props.smileys;
     const smileyRangeCount = data.map((key, value) => key.SmileyRange)
   
     const { labelWidth, selectedSlice } = this.state;

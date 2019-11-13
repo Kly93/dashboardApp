@@ -10,35 +10,12 @@ import PropTypes from 'prop-types';
 class FeedbacksInLineChart extends React.PureComponent {
 
     static propTypes = {
+        feedbacks: PropTypes.array.isRequired,
         onListRefresh: PropTypes.bool.isRequired,
         onPullDownRefresh: PropTypes.func.isRequired,
       };
 
-      state = {
-        feedbacks: []
-      };
-
-      _updateFeedbacks = (newFeedbacks) => {
-        this.state( { feedbacks: newFeedbacks });
-        console.log(feedbacks)
-    }
-
-      componentDidMount = () => {
-        fetch('http://7a7333dc.ngrok.io/get/feedbacks', { method: 'GET' })
-           .then(response => response.json() )
-           .then((responseJson) => {
-               this.setState({
-                feedbacks: responseJson
-               })
-            })
-            .catch((error) => {
-               console.error(error);
-            });
-         }
-
-
     render() {
-        const { feedbacks } = this.state;
         const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         const Tooltip = ({ x, y }) => (
@@ -63,18 +40,18 @@ class FeedbacksInLineChart extends React.PureComponent {
                         textAnchor={ 'middle' }
                         stroke={ 'rgb(52, 235, 149)' }
                     >
-                        { `${feedbacks[5]}` }
+                        { `${this.props.feedbacks[5]}` }
                     </Text>
                 </G>
                 <G x={ 75 / 2 }>
                     <Line
                         y1={ 50 + 40 }
-                        y2={ y(feedbacks[ 5 ]) }
+                        y2={ y(this.props.feedbacks[ 5 ]) }
                         stroke={ 'grey' }
                         strokeWidth={ 2 }
                     />
                     <Circle
-                        cy={ y(feedbacks[ 5 ]) }
+                        cy={ y(this.props.feedbacks[ 5 ]) }
                         r={ 6 }
                         stroke={ 'rgb(52, 235, 149)' }
                         strokeWidth={ 2 }
@@ -88,7 +65,7 @@ class FeedbacksInLineChart extends React.PureComponent {
             <View>
                 <LineChart
                     style={{ height: 200, marginLeft: 10 }}
-                    data={ feedbacks }
+                    data={ this.props.feedbacks }
                     yMin={0}
                     svg={{
                         stroke: 'rgb(52, 235, 149)',
@@ -108,7 +85,7 @@ class FeedbacksInLineChart extends React.PureComponent {
                 scale={scale.scaleBand}
                 labelStyle={ { color: 'black' } }/>
                 <YAxis
-                    data={ feedbacks  }
+                    data={ this.props.feedbacks  }
                     yMin={0}
                     style={ { position: 'absolute', top: 0, bottom: 0, marginBottom: 20 }}
                     contentInset={ { top: 10, bottom: 10 } }

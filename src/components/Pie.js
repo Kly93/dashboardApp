@@ -12,7 +12,7 @@ class Pie extends React.PureComponent {
         fetch('http://e5080d96.ngrok.io/get', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
-               console.log(responseJson);
+               //console.log(responseJson);
                this.setState({
                 data: responseJson
                })

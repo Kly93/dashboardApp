@@ -25,7 +25,7 @@ class Area extends React.PureComponent {
         }),
       )
       .then(responseJson => {
-        console.log(responseJson);
+        //console.log(responseJson);
         this.setState({
           data: responseJson,
         });

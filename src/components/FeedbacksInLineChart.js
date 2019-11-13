@@ -30,7 +30,7 @@ class FeedbacksInLineChart extends React.PureComponent {
       'Feb',
       'Mar',
       'Apr',
-      'Mai',
+      'May',
       'Jun',
       'Jul',
       'Aug',

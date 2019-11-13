@@ -41,7 +41,7 @@ class FeedbackItem extends React.Component {
 
   render() {
     const {feedback} = this.props;
-    console.log(feedback);
+    //console.log(feedback);
     return (
       <View style={styles.container}>
         <DataTable>

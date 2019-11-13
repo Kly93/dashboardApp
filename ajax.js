@@ -6,7 +6,7 @@ export default {
     try {
       const response = await fetch(apiHost + '/get/time/desc');
       const responseJson = await response.json();
-      console.log('result ' + responseJson);
+      //console.log('result ' + responseJson);
       return responseJson;
     } catch (error) {
       console.error(error);

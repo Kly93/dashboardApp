@@ -22,6 +22,7 @@ import { PieChart } from 'react-native-svg-charts'
   }
 
   componentDidMount = () => {
+<<<<<<< Updated upstream
     fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', { method: 'GET' })
        .then(response => response.json() )
        .then((responseJson) => {
@@ -31,6 +32,13 @@ import { PieChart } from 'react-native-svg-charts'
         })
         .catch((error) => {
            console.error(error);
+=======
+    fetch('http://e5080d96.ngrok.io/get/linecount/smiley', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          data: responseJson,
+>>>>>>> Stashed changes
         });
      }
 

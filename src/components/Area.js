@@ -16,6 +16,7 @@ class Area extends React.PureComponent {
   };
 
   componentDidMount = () => {
+<<<<<<< Updated upstream
     fetch('http://7bcc159e.ngrok.io/get/feedbacks', { method: 'GET' })
        .then(response => response.json() )
        .then((responseJson) => {

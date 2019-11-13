@@ -10,9 +10,16 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
+<<<<<<< Updated upstream
         fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
+=======
+        fetch('http://e5080d96.ngrok.io/get', { method: 'GET' })
+           .then(response => response.json() )
+           .then((responseJson) => {
+               //console.log(responseJson);
+>>>>>>> Stashed changes
                this.setState({
                 data: responseJson
                })

@@ -16,7 +16,7 @@ class FeedbackItem extends React.Component {
   
   render() {
     const {feedback} = this.props;
-    console.log(feedback);
+    //console.log(feedback);
     return (
       <View>
         <ListItem

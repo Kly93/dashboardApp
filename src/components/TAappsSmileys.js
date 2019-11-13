@@ -6,6 +6,7 @@ import * as scale from 'd3-scale';
 
 class TAappSmileys extends React.PureComponent {
 
+<<<<<<< Updated upstream
     state = {
         data: []
     };
@@ -22,6 +23,20 @@ class TAappSmileys extends React.PureComponent {
                console.error(error);
             });
          }
+=======
+  componentDidMount = () => {
+    fetch('http://e5080d96.ngrok.io/getAvgPerApp', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          data: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+>>>>>>> Stashed changes
 
 
     render(){

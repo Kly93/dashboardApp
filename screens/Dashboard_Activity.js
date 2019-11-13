@@ -4,6 +4,7 @@ import Bar from '../src/components/Bar';
 import Line from '../src/components/Line';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
 
+<<<<<<< Updated upstream
 
 
 export default class Dashboard_Activity extends React.Component {

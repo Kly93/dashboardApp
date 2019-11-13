@@ -5,6 +5,7 @@ import * as scale from 'd3-scale';
 
 class Bar extends React.PureComponent {
 
+<<<<<<< Updated upstream
 state = {
     data: []
 };
@@ -16,6 +17,15 @@ componentDidMount = () => {
          this.setState({
           data: responseJson
          })
+=======
+  componentDidMount = () => {
+    fetch('http://e5080d96.ngrok.io/get/os2/android+ios', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          data: responseJson,
+        });
+>>>>>>> Stashed changes
       })
       .catch((error) => {
          console.error(error);
@@ -32,6 +42,7 @@ render() {
     osCount.push(osCountiOS[0])
     //console.log(osCount)
 
+<<<<<<< Updated upstream
     const Labels = ({ data }) => (
         data.map((value, index) => (
             <Text

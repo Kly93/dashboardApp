@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 const apiHost = 'http://7bcc159e.ngrok.io';
+=======
+// const apiHost = 'http://10.24.24.241:8085';
+const apiHost = 'http://e5080d96.ngrok.io';
+>>>>>>> Stashed changes
 
 export default {
   async getAllFeedbacks() {

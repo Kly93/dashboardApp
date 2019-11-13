@@ -1,7 +1,6 @@
 import React from 'react';
 import { PieChart } from 'react-native-svg-charts';
-import { View } from 'react-native';
-
+import { View, Text } from 'react-native';
 
 class Pie extends React.PureComponent {
 
@@ -10,16 +9,10 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
-<<<<<<< Updated upstream
-        fetch('http://7bcc159e.ngrok.io/get/linecount/smiley', { method: 'GET' })
-           .then(response => response.json() )
-           .then((responseJson) => {
-=======
         fetch('http://e5080d96.ngrok.io/get', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
-               //console.log(responseJson);
->>>>>>> Stashed changes
+               console.log(responseJson);
                this.setState({
                 data: responseJson
                })
@@ -30,12 +23,11 @@ class Pie extends React.PureComponent {
          }
 
 render() {
-    // Count the amount of smileys and display it
     const { data } = this.state
     const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
-    const smileyAmount = data.length !== 0 ? (data.map((key, value) => (key.SmileyRange)) ) : ( [] );
+    const id = data.map((key, value) => (key.id))
 
-    const pieData = smileyAmount
+    const pieData = id
     .filter((value) => value > 0)
     .map((value, index) => ({
         value,
@@ -52,7 +44,10 @@ render() {
                 style={ { height: 200 } }
                 data={ pieData }
                 svg={{ fill: randomColor }}>
-            </PieChart>
+                    </PieChart>
+            <Text
+                style={ { fontSize: 25, textAlign: 'center' } }>
+                    Ids</Text>
         </View>
     )
 }

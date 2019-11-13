@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, ActivityIndicator, StyleSheet, BackHandler} from 'react-native';
 import ajax from '../ajax';
 import FeedbackList from '../src/components/FeedbackList';
+import FeedbackDetail from '../src/components/FeedbackDetail';
 
 export default class FeedbackList_Activity extends React.Component {
   static navigationOptions = {
@@ -10,20 +11,71 @@ export default class FeedbackList_Activity extends React.Component {
 
   state = {
     feedbacks: [],
+    currentFeedbackId: null,
+    loading: false,
+    refreshing: false,
+    isFeedbackClick: false,
   };
 
-  async componentDidMount() {
-    const feedbacks = await ajax.getAllFeedbacks();
-    //console.log(feedbacks);
-    this.setState({feedbacks});
+  setCurrentFeedback = feadbackId => {
+    this.setState({
+      currentFeedbackId: feadbackId,
+    });
+  };
+
+  currentFeedback = () => {
+    return this.state.feedbacks.find(
+      feedback => feedback.id === this.state.currentFeedbackId,
+    );
+  };
+
+  unsetCurrentFeedback = () => {
+    this.setState({
+      currentFeedbackId: null,
+    });
+    return true;
+  };
+
+  _getFeedbackData = async () => {
+    const _feedbacks = await ajax.getAllFeedbacks();
+    this.setState({feedbacks: _feedbacks});
+  };
+
+  handleNewFeedbackBold = () => {};
+
+  handleRefresh = () => {
+    this.setState({refreshing: true});
+    this._getFeedbackData().then(() => {
+      this.setState({refreshing: false});
+    });
+  };
+
+  componentDidMount() {
+    this._getFeedbackData();
+    BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.unsetCurrentFeedback,
+    );
   }
 
   render() {
+    if (this.state.currentFeedbackId) {
+      return (
+        <View>
+          <FeedbackDetail initialFeedbackData={this.currentFeedback()} />
+        </View>
+      );
+    }
     const feedbacksToDisplay = this.state.feedbacks;
     if (feedbacksToDisplay.length > 0) {
       return (
-        <View>
-          <FeedbackList feedbacks={feedbacksToDisplay} />
+        <View style={styles.mainContainer}>
+          <FeedbackList
+            feedbacks={feedbacksToDisplay}
+            onItemPress={this.setCurrentFeedback}
+            onListRefresh={this.state.refreshing}
+            onPullDownRefresh={this.handleRefresh.bind(this)}
+          />
         </View>
       );
     }
@@ -32,10 +84,9 @@ export default class FeedbackList_Activity extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f4f6f9',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  mainContainer: {
+    backgroundColor: '#fff',
+    height: '100%',
+    paddingBottom: 10,
   },
 });

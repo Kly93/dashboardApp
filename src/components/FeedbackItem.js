@@ -1,39 +1,74 @@
-import React, {Component} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import React from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
+import {DataTable} from 'react-native-paper';
 
 class FeedbackItem extends React.Component {
   static propTypes = {
     feedback: PropTypes.object.isRequired,
+    onPress: PropTypes.func.isRequired,
   };
 
-  onPressItem = (item) => {
-    const email = item.email;
-    //console.log("onPress email with item: " + item.email);
-    this.props.navigation.navigate('Detail', {item: item})
-  }
-  
+  handlePress = () => {
+    this.props.onPress(this.props.feedback.id);
+  };
+
+  checkOs = osText => {
+    var text = osText;
+    if (text.toLowerCase().indexOf('os') >= 0) {
+      return (
+        <Image
+          source={require('../../assets/ios-icon.png')}
+          style={styles.osLogo}
+        />
+      );
+    } else if (text.toLowerCase().indexOf('android') >= 0) {
+      return (
+        <Image
+          source={require('../../assets/android-icon.png')}
+          style={styles.osLogo}
+        />
+      );
+    }
+  };
+
+  showOnlyDate = date => {
+    var text = date;
+    var index = text.replace(/ .*/, '');
+
+    return <Text>{index}</Text>;
+  };
+
   render() {
     const {feedback} = this.props;
-    //console.log(feedback);
+    console.log(feedback);
     return (
-      <View>
-        <ListItem
-          key={feedback.id}
-          title={feedback.feedback}
-          topDivider
-          rightSubtitle={feedback.time}
-          subtitleStyle={{fontSize: 8}}
-          titleStyle={{fontWeight: 'bold'}}
-          onPress={() => this.onPressItem(feedback.id)}
-        />
+      <View style={styles.container}>
+        <DataTable>
+          <TouchableOpacity onPress={this.handlePress}>
+            <DataTable.Row>
+              <DataTable.Cell style={{paddingBottom: 20}}>
+                {this.checkOs(feedback.os)}
+              </DataTable.Cell>
+              <DataTable.Cell>{feedback.feedback}</DataTable.Cell>
+              <DataTable.Cell
+                style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+                {this.showOnlyDate(feedback.time)}
+              </DataTable.Cell>
+            </DataTable.Row>
+          </TouchableOpacity>
+        </DataTable>
       </View>
     );
-
-    
-
   }
 }
+
+const styles = StyleSheet.create({
+  osLogo: {
+    height: 40,
+    width: 40,
+    resizeMode: 'contain',
+  },
+});
 
 export default FeedbackItem;

@@ -1,32 +1,21 @@
 import React from 'react';
-import { AreaChart, Grid, YAxis, XAxis } from 'react-native-svg-charts';
-import { Text, View, Dimensions, StyleSheet, SafeAreaView } from 'react-native';
+import {AreaChart, Grid} from 'react-native-svg-charts';
+import {Text, View, Dimensions, StyleSheet, SafeAreaView} from 'react-native';
 import moment from 'moment';
-import { Circle } from 'react-native-svg';
+import {Circle} from 'react-native-svg';
 import Tooltip from './Tooltip';
 
-const { height } = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 class Area extends React.PureComponent {
   state = {
-    data:  [],
+    data: [],
     tooltipX: null,
     tooltipY: null,
     tooltipIndex: null,
   };
 
   componentDidMount = () => {
-<<<<<<< Updated upstream
-    fetch('http://7bcc159e.ngrok.io/get/feedbacks', { method: 'GET' })
-       .then(response => response.json() )
-       .then((responseJson) => {
-           this.setState({
-            data: responseJson
-           })
-        })
-        .catch((error) => {
-           console.error(error);
-=======
     // Replace with prod URL
     fetch('http://e5080d96.ngrok.io/get', {method: 'GET'})
       .then(response => response.json())
@@ -36,57 +25,57 @@ class Area extends React.PureComponent {
         }),
       )
       .then(responseJson => {
-        //console.log(responseJson);
+        console.log(responseJson);
         this.setState({
           data: responseJson,
->>>>>>> Stashed changes
         });
-     }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   render() {
-    const { data, tooltipX, tooltipY, tooltipIndex } = this.state;
-    const months = ["Jan", "Feb"];
-    const feedbackAmount = data.map((key, index) => key)
-    const contentInset = { left: 10, right: 10, top: 10, bottom: 7 };
+    const {data, tooltipX, tooltipY, tooltipIndex} = this.state;
+    const contentInset = {left: 10, right: 10, top: 10, bottom: 7};
 
-    const ChartPoints = ({ x, y, color }) =>
-    data.length !== 0 ? (
-    data.map((item, index) => (
+    const ChartPoints = ({x, y, color}) =>
+      data.map((item, index) => (
         <Circle
           key={index}
           cx={x(moment(item.time))}
-          cy={y(index)}
+          cy={y(item.smiley)}
           r={6}
           stroke={color}
           fill="white"
           onPress={() =>
             this.setState({
               tooltipX: moment(item.time),
-              tooltipY: index,
+              tooltipY: item.smiley,
               tooltipIndex: index,
             })
-            }
+          }
         />
-    ) ) ) : (
-    <Text>No Data available</Text>
-    );
+      ));
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           {data.length !== 0 ? (
             <AreaChart
-              style={{ height: '100%' }}
+              style={{height: '70%'}}
               data={data}
-              yAccessor={({ index }) => index }
-              xAccessor={({ item }) => moment(item.time)}
+              yAccessor={({item}) => item.smiley}
+              xAccessor={({item}) => moment(item.time)}
               contentInset={contentInset}
-              svg={{ fill: '#003F5A' }}
+              svg={{fill: '#003F5A'}}
               numberOfTicks={10}
               yMin={0}
-              yMax={50}
-            >
-              <Grid svg={{ stroke: 'rgba(151, 151, 151, 0.09)' }} belowChart={false} />
+              yMax={10}>
+              <Grid
+                svg={{stroke: 'rgba(151, 151, 151, 0.09)'}}
+                belowChart={false}
+              />
               <ChartPoints color="#003F5A" />
               <Tooltip
                 tooltipX={tooltipX}
@@ -102,33 +91,17 @@ class Area extends React.PureComponent {
                 height: '50%',
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}
-            >
+              }}>
               <Text
                 style={{
                   fontSize: 18,
                   color: '#ccc',
-                }}
-              >
-                There is no data available.
+                }}>
+                There are no responses for this month.
               </Text>
             </View>
           )}
-        {data.length !== 0 ? (
-            <YAxis
-            data={ feedbackAmount }
-            yMin={0}
-            style={ { position: 'absolute', top: 0, bottom: 0}}
-            svg={ {
-                fontSize: 8,
-                fill: 'black',
-                stroke: 'black',
-                strokeWidth: 0.5
-            } }
-            ></YAxis>
-        ) : (
-          <Text></Text>
-        )}
+          <Text style={styles.heading}>Dates</Text>
         </View>
       </SafeAreaView>
     );

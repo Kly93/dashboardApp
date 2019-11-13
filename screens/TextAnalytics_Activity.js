@@ -1,8 +1,7 @@
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import React, {Component} from 'react';
 import TAappSmileys from '../src/components/TAappsSmileys';
-import TAWords from '../src/components/TAWords';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import TACatDistr from '../src/components/TACatDistr';
 
 export default class TextAnalytics_Activity extends Component {
@@ -16,11 +15,11 @@ export default class TextAnalytics_Activity extends Component {
         <ScrollView>
           <View>
             <Text style={styles.text}>Average smiley per app</Text>
-            <TAappSmileys/>
+            <TAappSmileys />
           </View>
           <View>
             <Text style={styles.text}>Category distribution</Text>
-            <TACatDistr/>
+            <TACatDistr />
           </View>
         </ScrollView>
       </View>
@@ -33,11 +32,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f4f6f9',
-    padding: 11
+    padding: 11,
   },
   text: {
     fontSize: 24,
     padding: 10,
-    fontWeight: "bold",
-  }
+    fontWeight: 'bold',
+  },
 });

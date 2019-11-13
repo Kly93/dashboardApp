@@ -108,20 +108,28 @@ export default class Dashboard_Activity extends React.Component {
               feedbacks={feedbacksToDisplay}>
             </FeedbacksInLineChart>
             ) : ( 
-              null
-              ) } 
+              <Text>No data available</Text>
+              )} 
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>
+           { this.state.os.length > 0 ? ( 
             <Bar 
               os={osToDisplay}>
             </Bar>
+            ) : (
+              <Text>No data available</Text>
+            )}
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
+          { this.state.smileys.length > 0 ? ( 
             <PieChartWithClickSlices 
               smileys={smileysToDisplay}>
             </PieChartWithClickSlices>
+          ) : (
+            <Text>No data available</Text>
+          )}
           </View>
         </ScrollView>
       </View>

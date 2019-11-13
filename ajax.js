@@ -14,7 +14,7 @@ export default {
   },
   async getFeedbackDetail(feedbackId) {
     try {
-      const response = await fetch(apiHost + '/id/' + feedbackId);
+      const response = await fetch(apiHost + '/get/id/' + feedbackId);
       const responseJson = await response.json();
       return responseJson;
     } catch (error) {

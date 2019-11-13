@@ -6,6 +6,9 @@ import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
 
 <<<<<<< Updated upstream
 
+=======
+const apiHost = 'http://e5080d96.ngrok.io/get';
+>>>>>>> Stashed changes
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {

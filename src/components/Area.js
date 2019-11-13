@@ -26,6 +26,20 @@ class Area extends React.PureComponent {
         })
         .catch((error) => {
            console.error(error);
+=======
+    // Replace with prod URL
+    fetch('http://e5080d96.ngrok.io/get', {method: 'GET'})
+      .then(response => response.json())
+      .then(data =>
+        data.sort((a, b) => {
+          return new Date(a.time) - new Date(b.time);
+        }),
+      )
+      .then(responseJson => {
+        //console.log(responseJson);
+        this.setState({
+          data: responseJson,
+>>>>>>> Stashed changes
         });
      }
 

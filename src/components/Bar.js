@@ -58,6 +58,17 @@ render() {
             </Text>
         ))
     )
+=======
+  render() {
+    const osCount = [];
+    const {data} = this.state;
+    const osString = ['Android', 'iOS'];
+    const osCountAndroid = data.map((key, index) => key.android);
+    const osCountiOS = data.map((key, index) => key.ios);
+    osCount.push(osCountAndroid[0]);
+    osCount.push(osCountiOS[0]);
+    //console.log(osCount);
+>>>>>>> Stashed changes
 
     return(
         <View>

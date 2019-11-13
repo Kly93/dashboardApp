@@ -81,8 +81,8 @@ class TACatDistr extends React.PureComponent {
             <Text style={styles.text}>Suggestion {suP}%</Text>
           </View>
         </View>
-
-        <View style={{width: scr*0.85}}>
+        
+        <View style={{width: scr*0.85, marginLeft: -10}}>
           <VictoryPie
             data={[
               {x: ' ', y: feedb[0]},

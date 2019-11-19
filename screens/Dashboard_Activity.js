@@ -14,10 +14,8 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   state = {
-    feedbacks: {
-      "yearCount": "" ,
-      "months": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    },
+    feedbacks: [],
+    months: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     os: [],
     loading: false,
     smileys: [],
@@ -90,22 +88,19 @@ export default class Dashboard_Activity extends React.Component {
   render() {
     const {tooltipX, tooltipY, tooltipIndex} = this.state;
     const feedbacksToDisplay = this.state.feedbacks;
+    const monthsToDisplay = this.state.months;
     const osToDisplay = this.state.os;
     const smileysToDisplay = this.state.smileys;
-    const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    
 
     return (
       <View style={{backgroundColor: '#fff'}}>
         <ScrollView
             refreshControl={
               <RefreshControl
-                    refreshing={this.state.refreshing}
+                    refreshing={ this.state.refreshing }
                     onRefresh={ () => this.handleRefresh() }
                   />
-          }
-         
+          } 
           showsVerticalScrollIndicator={false}
           style={{backgroundColor: '#fff', borderRadius: 5}}
          >
@@ -114,7 +109,7 @@ export default class Dashboard_Activity extends React.Component {
            { this.state.feedbacks.length > 0 ? ( 
             <FeedbacksInLineChart 
               feedbacks={feedbacksToDisplay}
-              months={months}
+              months={monthsToDisplay}
               onListRefresh={this.state.refreshing}
               onPullDownRefresh={this.handleRefresh}>
             </FeedbacksInLineChart>

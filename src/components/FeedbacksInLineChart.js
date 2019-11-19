@@ -10,55 +10,13 @@ import PropTypes from 'prop-types';
 class FeedbacksInLineChart extends React.PureComponent {
 
     static propTypes = {
-        feedbacks: PropTypes.object.isRequired,
+        feedbacks: PropTypes.array.isRequired,
+        month: PropTypes.array.isRequired,
         onListRefresh: PropTypes.bool.isRequired,
         onPullDownRefresh: PropTypes.func.isRequired,
       };
 
     render() {
-        const Tooltip = ({ x, y }) => (
-            <G
-                x={ x(5) - (75 / 2) }
-                key={ 'tooltip' }
-                onPress={ () => console.log('tooltip clicked') }
-            >
-                <G y={ 50 }>
-                    <Rect
-                        height={ 40 }
-                        width={ 75 }
-                        stroke={ 'grey' }
-                        fill={ 'white' }
-                        ry={ 10 }
-                        rx={ 10 }
-                    />
-                    <Text
-                        x={ 75 / 2 }
-                        dy={ 20 }
-                        alignmentBaseline={ 'middle' }
-                        textAnchor={ 'middle' }
-                        stroke={ 'rgb(52, 235, 149)' }
-                    >
-                        { `${this.props.feedbacks[5]}` }
-                    </Text>
-                </G>
-                <G x={ 75 / 2 }>
-                    <Line
-                        y1={ 50 + 40 }
-                        y2={ y(this.props.feedbacks[ 5 ]) }
-                        stroke={ 'grey' }
-                        strokeWidth={ 2 }
-                    />
-                    <Circle
-                        cy={ y(this.props.feedbacks[ 5 ]) }
-                        r={ 6 }
-                        stroke={ 'rgb(52, 235, 149)' }
-                        strokeWidth={ 2 }
-                        fill={ 'white' }
-                    />
-                </G>
-            </G>
-        )
-
         return (
             <View>
                 <LineChart
@@ -72,8 +30,7 @@ class FeedbacksInLineChart extends React.PureComponent {
                     contentInset={{ top: 20, bottom: 10 }}
                     curve={ shape.curveLinear }
                 >
-                    <Grid/>
-                    
+                    <Grid/>             
                 </LineChart>
                 <XAxis
                 style={{ }}
@@ -83,7 +40,7 @@ class FeedbacksInLineChart extends React.PureComponent {
                 scale={scale.scaleBand}
                 labelStyle={ { color: 'black' } }/>
                 <YAxis
-                    data={ this.props.feedbacks  }
+                    data={ this.props.feedbacks }
                     yMin={0}
                     style={ { position: 'absolute', top: 0, bottom: 0, marginBottom: 20 }}
                     contentInset={ { top: 10, bottom: 10 } }

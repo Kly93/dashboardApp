@@ -17,7 +17,7 @@ class TAWords extends React.PureComponent {
   };
 
   componentDidMount = () => {
-      fetch('http://e5080d96.ngrok.io/getAnData', { method: 'GET' })
+      fetch('http://7cf324aa.ngrok.io/getAnData', { method: 'GET' })
         .then(response => response.json() )
         .then((responseJson) => {
             this.setState({

@@ -9,7 +9,7 @@ class Pie extends React.PureComponent {
     }
     
     componentDidMount = () => {
-        fetch('http://e5080d96.ngrok.io/get', { method: 'GET' })
+        fetch('http://7cf324aa.ngrok.io/get', { method: 'GET' })
            .then(response => response.json() )
            .then((responseJson) => {
                //console.log(responseJson);

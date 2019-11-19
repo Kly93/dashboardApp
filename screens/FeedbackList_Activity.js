@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {View, ActivityIndicator, StyleSheet, BackHandler} from 'react-native';
+import {View, BackHandler, StyleSheet} from 'react-native';
 import ajax from '../ajax';
 import FeedbackList from '../src/components/FeedbackList';
 import FeedbackDetail from '../src/components/FeedbackDetail';
+import ChooseApp from '../src/components/ChooseApp';
 
 export default class FeedbackList_Activity extends React.Component {
+
   static navigationOptions = {
     title: 'Feedback results',
   };
@@ -70,7 +72,9 @@ export default class FeedbackList_Activity extends React.Component {
     if (feedbacksToDisplay.length > 0) {
       return (
         <View style={styles.mainContainer}>
+          <ChooseApp style={{flex: 1}}/>
           <FeedbackList
+            style={{flex: 1}}
             feedbacks={feedbacksToDisplay}
             onItemPress={this.setCurrentFeedback}
             onListRefresh={this.state.refreshing}

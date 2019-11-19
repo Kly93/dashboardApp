@@ -1,5 +1,8 @@
 import React from 'react';
-import {View, FlatList, StyleSheet, RefreshControl} from 'react-native';
+import {View, FlatList,
+  RefreshControl, AppRegistry, StyleSheet, 
+  Platform, Picker, ActivityIndicator, 
+  Button, Alert} from 'react-native';
 import PropTypes from 'prop-types';
 import FeedbackItem from './FeedbackItem';
 import {DataTable} from 'react-native-paper';
@@ -49,7 +52,7 @@ class FeedbackList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    height: '85%',
     backgroundColor: '#fff',
     margin: 5,
     borderRadius: 5,

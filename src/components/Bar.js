@@ -9,7 +9,7 @@ class Bar extends React.PureComponent {
   };
 
   componentDidMount = () => {
-    fetch('http://e5080d96.ngrok.io/get/os2/android+ios', {method: 'GET'})
+    fetch('http://7cf324aa.ngrok.io/get/os2/android+ios', {method: 'GET'})
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

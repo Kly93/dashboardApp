@@ -11,7 +11,7 @@ class FeedbacksInLineChart extends React.PureComponent {
   };
 
   componentDidMount = () => {
-    fetch('http://e5080d96.ngrok.io/get/feedbacks', {method: 'GET'})
+    fetch('http://7cf324aa.ngrok.io/get/feedbacks', {method: 'GET'})
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

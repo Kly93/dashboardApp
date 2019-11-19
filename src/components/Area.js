@@ -17,7 +17,7 @@ class Area extends React.PureComponent {
 
   componentDidMount = () => {
     // Replace with prod URL
-    fetch('http://e5080d96.ngrok.io/get', {method: 'GET'})
+    fetch('http://7cf324aa.ngrok.io/get', {method: 'GET'})
       .then(response => response.json())
       .then(data =>
         data.sort((a, b) => {

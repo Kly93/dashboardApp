@@ -10,7 +10,7 @@ class TAappSmileys extends React.PureComponent {
   };
 
   componentDidMount = () => {
-    fetch('http://e5080d96.ngrok.io/getAvgPerApp', {method: 'GET'})
+    fetch('http://7cf324aa.ngrok.io/getAvgPerApp', {method: 'GET'})
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

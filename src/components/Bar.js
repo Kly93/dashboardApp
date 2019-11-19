@@ -9,7 +9,7 @@ class Bar extends React.PureComponent {
   };
 
   componentDidMount = () => {
-    fetch('http://7cf324aa.ngrok.io/get/os2/android+ios', {method: 'GET'})
+    fetch('http://7cf324aa.ngrok.io/get/os2/Android+iOS', {method: 'GET'})
       .then(response => response.json())
       .then(responseJson => {
         this.setState({
@@ -23,7 +23,6 @@ class Bar extends React.PureComponent {
 
   render() {
     const {data} = this.state;
-    const osString = ['Android', 'iOS'];
     const os = data.map((key, index) => key.os);
     const count = data.map((key, index) => key.count);
 
@@ -52,7 +51,7 @@ class Bar extends React.PureComponent {
         </BarChart>
         <XAxis
           style={{marginTop: 10}}
-          data={osString}
+          data={os}
           scale={scale.scaleBand}
           xAccessor={({item, index}) => item}
           formatLabel={(value, index) => value}

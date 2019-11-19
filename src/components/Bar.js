@@ -22,14 +22,10 @@ class Bar extends React.PureComponent {
   };
 
   render() {
-    const osCount = [];
     const {data} = this.state;
     const osString = ['Android', 'iOS'];
-    const osCountAndroid = data.map((key, index) => key.android);
-    const osCountiOS = data.map((key, index) => key.ios);
-    osCount.push(osCountAndroid[0]);
-    osCount.push(osCountiOS[0]);
-    console.log(osCount);
+    const os = data.map((key, index) => key.os);
+    const count = data.map((key, index) => key.count);
 
     const Labels = ({data}) =>
       data.map((value, index) => (
@@ -50,7 +46,7 @@ class Bar extends React.PureComponent {
         <BarChart
           yMin={0}
           style={{height: 200, min: 0, marginLeft: 5}}
-          data={osCount}
+          data={count}
           svg={{fill: 'rgb(134, 65, 244)'}}>
           <Grid />
         </BarChart>
@@ -63,7 +59,7 @@ class Bar extends React.PureComponent {
           labelStyle={{color: 'black'}}
         />
         <YAxis
-          data={osCount}
+          data={count}
           yMin={0}
           style={{position: 'absolute', top: 0, bottom: 20}}
           contentInset={{top: 10, bottom: 10}}

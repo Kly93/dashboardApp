@@ -10,14 +10,12 @@ import PropTypes from 'prop-types';
 class FeedbacksInLineChart extends React.PureComponent {
 
     static propTypes = {
-        feedbacks: PropTypes.array.isRequired,
+        feedbacks: PropTypes.object.isRequired,
         onListRefresh: PropTypes.bool.isRequired,
         onPullDownRefresh: PropTypes.func.isRequired,
       };
 
     render() {
-        const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
         const Tooltip = ({ x, y }) => (
             <G
                 x={ x(5) - (75 / 2) }
@@ -79,7 +77,7 @@ class FeedbacksInLineChart extends React.PureComponent {
                 </LineChart>
                 <XAxis
                 style={{ }}
-                data={ months }
+                data={ this.props.months }
                 formatLabel={ (value, index) => value }
                 xAccessor={({ item, index }) => item}
                 scale={scale.scaleBand}

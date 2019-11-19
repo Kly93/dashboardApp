@@ -4,8 +4,9 @@ import Bar from '../src/components/Bar';
 import FeedbacksInLineChart from '../src/components/FeedbacksInLineChart';
 import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
 import AsyncStorage from '@react-native-community/async-storage';
+import {Circle} from 'react-native-svg';
 
-const apiHost = "http://10.24.24.141:8085/get";
+const apiHost = "http://10.24.24.20:8085/get";
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -13,7 +14,10 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   state = {
-    feedbacks: [],
+    feedbacks: {
+      "yearCount": "" ,
+      "months": [],
+    },
     os: [],
     loading: false,
     smileys: [],
@@ -84,9 +88,13 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   render() {
+    const {tooltipX, tooltipY, tooltipIndex} = this.state;
     const feedbacksToDisplay = this.state.feedbacks;
     const osToDisplay = this.state.os;
     const smileysToDisplay = this.state.smileys;
+    const months = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    
 
     return (
       <View style={{backgroundColor: '#fff'}}>
@@ -105,11 +113,14 @@ export default class Dashboard_Activity extends React.Component {
             <Text style={styles.text}>Feedback amount this year</Text>
            { this.state.feedbacks.length > 0 ? ( 
             <FeedbacksInLineChart 
-              feedbacks={feedbacksToDisplay}>
+              feedbacks={feedbacksToDisplay}
+              months={months}
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}>
             </FeedbacksInLineChart>
             ) : ( 
               <Text>No data available</Text>
-              )} 
+              )}
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>

@@ -33,7 +33,7 @@ const Tooltip = ({
           {tooltipY}
         </Text>
         <Text x={tooltipY > 9 ? 24 : 22} y={14}>
-          {moment(tooltipX).format('MMM DD')}
+          {tooltipX}
         </Text>
       </G>
     </G>

@@ -16,7 +16,7 @@ export default class Dashboard_Activity extends React.Component {
   state = {
     feedbacks: {
       "yearCount": "" ,
-      "months": [],
+      "months": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     },
     os: [],
     loading: false,
@@ -126,7 +126,9 @@ export default class Dashboard_Activity extends React.Component {
             <Text style={styles.text}>OS distribution</Text>
            { this.state.os.length > 0 ? ( 
             <Bar 
-              os={osToDisplay}>
+              os={osToDisplay}
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}>
             </Bar>
             ) : (
               <Text>No data available</Text>
@@ -136,7 +138,9 @@ export default class Dashboard_Activity extends React.Component {
             <Text style={styles.text}>Satisfaction index</Text>
           { this.state.smileys.length > 0 ? ( 
             <PieChartWithClickSlices 
-              smileys={smileysToDisplay}>
+              smileys={smileysToDisplay}
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}>
             </PieChartWithClickSlices>
           ) : (
             <Text>No data available</Text>

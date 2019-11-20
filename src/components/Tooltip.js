@@ -1,8 +1,6 @@
 import React from 'react';
 import { G, Rect, Text } from 'react-native-svg';
 
-import moment from 'moment';
-
 const Tooltip = ({
   x,
   y,

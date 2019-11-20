@@ -17,7 +17,7 @@ class Area extends React.PureComponent {
 
   componentDidMount = () => {
     // Replace with prod URL
-    fetch('http://10.24.24.28:8080/get', {method: 'GET'})
+    fetch('http://10.24.24.20:8085/get', {method: 'GET'})
       .then(response => response.json())
       .then(data =>
         data.sort((a, b) => {

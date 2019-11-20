@@ -2,16 +2,15 @@ import React from 'react'
 import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
 import { View } from 'react-native';
 import * as shape from 'd3-shape'
-import { Circle, Line, Rect, Text } from 'react-native-svg'
+import { G, Circle, Line, Rect, Text } from 'react-native-svg'
 import * as scale from 'd3-scale';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import Tooltip from './Tooltip';
 
 class FeedbacksInLineChart extends React.PureComponent {
 
     static propTypes = {
         feedbacksPerYear: PropTypes.array.isRequired,
-        feedbacksPerMonth: PropTypes.object.isRequired,
         months: PropTypes.array.isRequired,
         tooltipX: PropTypes.object.isRequired,
         tooltipY: PropTypes.object.isRequired,
@@ -21,16 +20,35 @@ class FeedbacksInLineChart extends React.PureComponent {
       };
 
     render() {
-    const feedbacksPerMonth = this.props.feedbacksPerMonth;
-    const {tooltipX, tooltipY, tooltipIndex} = this.props;
-    const foo = feedbacksPerMonth.map((item, index) => item.time)
-    console.log("Time : " + foo) ;
+        const {feedbacksPerYear, tooltipX, tooltipY, tooltipIndex} = this.props;
+
+        const ChartPoints = ({ x, y }) => (
+            feedbacksPerYear.map((item, index) =>
+            <G x={ 75 / 2 }>
+            <Circle
+                cy={ y(feedbacksPerYear[ 5 ]) }
+                r={ 6 }
+                stroke={ 'rgb(134, 65, 244)' }
+                strokeWidth={ 2 }
+                fill={ 'white' }
+                onPress={() =>
+                    this.setState({
+                      tooltipX: this.props.month,
+                      tooltipY: item,
+                      tooltipIndex: index,
+                    }),
+                    console.log('tooltip clicked')
+                  }
+            />
+            </G>
+            ));
+            
 
         return (
             <View>
                 <LineChart
                     style={{ height: 200, marginLeft: 10 }}
-                    data={ this.props.feedbacksPerMonth }
+                    data={ this.props.feedbacksPerYear }
                     yMin={0}
                     svg={{
                         stroke: 'rgb(52, 235, 149)',
@@ -38,7 +56,15 @@ class FeedbacksInLineChart extends React.PureComponent {
                     }}
                     contentInset={{ top: 20, bottom: 10 }}
                     curve={ shape.curveLinear }>
-                    <Grid/>             
+                    <Grid/>     
+                    <ChartPoints color="#003F5A"/> 
+                    <Tooltip
+                        tooltipX={tooltipX}
+                        tooltipY={tooltipY}
+                        color="#003F5A"
+                        index={tooltipIndex}
+                        dataLength={feedbacksPerYear.length}
+                    />       
                 </LineChart>
                 <XAxis
                 style={{ }}

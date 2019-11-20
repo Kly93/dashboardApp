@@ -106,30 +106,10 @@ export default class Dashboard_Activity extends React.Component {
   render() {
     const {tooltipX, tooltipY, tooltipIndex} = this.state;
     const feedbacksPerYear = this.state.feedbacksPerYear;
-    const feedbacksPerMonth = this.state.feedbacksPerMonth;
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const xAxis = []
     const osToDisplay = this.state.os;
     const smileysToDisplay = this.state.smileys;
-
-    const ChartPoints = ({x, y, color}) =>
-    feedbacksPerMonth.map((item, index) => (
-        <Circle
-          key={index}
-          cx={x(moment(item.time))}
-          cy={y(item.smiley)}
-          r={6}
-          stroke={color}
-          fill="white"
-          onPress={() =>
-            this.setState({
-              tooltipX: moment(item.time),
-              tooltipY: item.smiley,
-              tooltipIndex: index,
-            })
-          }
-        />
-      ));
 
     return (
       <View style={{backgroundColor: '#fff'}}>
@@ -145,22 +125,12 @@ export default class Dashboard_Activity extends React.Component {
          >
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this year</Text>
-           { this.state.feedbacksPerMonth.length > 0 ? ( 
+           { this.state.feedbacksPerYear.length > 0 ? ( 
             <FeedbacksInLineChart 
-              yAccessor={({item}) => item.smiley}
-              xAccessor={({item}) => moment(item.time)}
-              feedbacksPerMonth={feedbacksPerMonth}
+              feedbacksPerYear={feedbacksPerYear}
               months={months}
               onListRefresh={this.state.refreshing}
               onPullDownRefresh={this.handleRefresh}>
-            <ChartPoints color="#003F5A" />
-            <Tooltip
-                tooltipX={tooltipX}
-                tooltipY={tooltipY}
-                color="#003F5A"
-                index={tooltipIndex}
-                dataLength={feedbacksPerMonth.length}
-              />
             </FeedbacksInLineChart>
             ) : ( 
               <Text>No data available</Text>

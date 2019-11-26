@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {Circle} from 'react-native-svg';
 import Tooltip from '../src/components/Tooltip';
 
-const apiHost = "http://10.24.24.20:8085/get";
+const apiHost = "http://10.24.24.117:8085/get";
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {

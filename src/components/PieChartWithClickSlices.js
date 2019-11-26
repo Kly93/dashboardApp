@@ -45,27 +45,6 @@ import PropTypes from 'prop-types';
       })
     const deviceWidth = Dimensions.get('window').width
 
-    const Labels = ({ slices, height, width }) => {
-      return slices.map((slice, index) => {
-          const { labelCentroid, pieCentroid, data } = slice;
-          return (
-              <Text
-                  key={index}
-                  x={pieCentroid[ 0 ]}
-                  y={pieCentroid[ 1 ]}
-                  fill={'black'}
-                  textAnchor={'middle'}
-                  alignmentBaseline={'middle'}
-                  fontSize={8}
-                  stroke={'black'}
-                  strokeWidth={0.2}
-              >
-                  {data.SmileyRange}
-              </Text>
-          )
-      })
-  }
-
     return (
       <View style={{ justifyContent: 'center', flex: 1, position: 'relative' }}>
         <PieChart

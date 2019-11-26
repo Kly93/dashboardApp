@@ -105,21 +105,25 @@ export default class Dashboard_Activity extends React.Component {
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this year</Text>
             <LineChart 
-              feedbacksPerYear={feedbacksPerYear}
-              
+              feedbacksPerYear={feedbacksPerYear}     
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}        
             />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>
             <Bar 
               os={os}
-              
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}
               />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
             <PieChartWithClickSlices 
-            smileyRange={smileyRange}/>
+            smileys={smileyRange}
+            onListRefresh={this.state.refreshing}
+            onPullDownRefresh={this.handleRefresh}/>
           </View>
         </ScrollView>
       </View>

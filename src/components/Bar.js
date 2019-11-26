@@ -33,7 +33,7 @@ render() {
         <VictoryChart
         theme={VictoryTheme.material}
         domain={{ x: [0, 3] }}
-        
+        containerComponent={<VictoryVoronoiContainer/>}
         >
         { osCount.length !== 0 ? (
         <VictoryBar

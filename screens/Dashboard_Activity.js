@@ -4,7 +4,7 @@ import LineChart from '../src/components/LineChart';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
-const apiHost = "http://10.24.24.20:8085/get";
+const apiHost = "http://10.24.24.117:8085/get";
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -13,7 +13,6 @@ export default class Dashboard_Activity extends React.Component {
 
   state = {
     feedbacksPerYear: [],
-    feedbacksPerMonth: [],
     months: [],
     tooltipX: null,
     tooltipY: null,
@@ -25,24 +24,10 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   componentDidMount() {
-    this._getFeedbackAmountPerMonth();
     this._getFeedbackAmountPerYear();
     this._getOsAmount();
     this._getSmileyRangeAmount();
   }
-
-  _getFeedbackAmountPerMonth = async () => {
-    fetch( apiHost + '/feedbacks/month', { method: 'GET' })
-       .then(response => response.json() )
-       .then((responseJson) => {
-           this.setState({
-            feedbacksPerMonth: responseJson
-           })
-        })
-        .catch((error) => {
-           console.error(error);
-        });
-     }
 
      _getFeedbackAmountPerYear = async () => {
       fetch( apiHost + '/feedbacks/year', { method: 'GET' })
@@ -93,9 +78,9 @@ export default class Dashboard_Activity extends React.Component {
 
   handleRefresh = () => {
     this.setState({refreshing: true});
-    this._getFeedbackAmountPerMonth();
     this._getOsAmount();
     this._getSmileyRangeAmount()
+    this._getFeedbackAmountPerYear()
     .then(() => {
       this.setState({refreshing: false});
     });

@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 class FeedbacksInLineChart extends React.PureComponent {
 
     static propTypes = {
-        feedbacksPerYear: PropTypes.array.isRequired,
         feedbacksPerMonth: PropTypes.object.isRequired,
         months: PropTypes.array.isRequired,
         tooltipX: PropTypes.object.isRequired,

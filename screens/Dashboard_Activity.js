@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native
 import LineChart from '../src/components/LineChart';
 import Bar from '../src/components/Bar';
 import AsyncStorage from '@react-native-community/async-storage';
+import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
 
 
 const apiHost = "http://10.24.24.117:8085/get";
@@ -15,9 +16,6 @@ export default class Dashboard_Activity extends React.Component {
   state = {
     feedbacksPerYear: [],
     months: [],
-    tooltipX: null,
-    tooltipY: null,
-    tooltipIndex: null,
     os: [],
     loading: false,
     smileys: [],
@@ -90,6 +88,7 @@ export default class Dashboard_Activity extends React.Component {
   render() {  
    const feedbacksPerYear = this.state.feedbacksPerYear;
    const os = this.state.os;
+   const smileyRange = this.state.smileys
 
     return (
       <View style={{backgroundColor: '#fff'}}>
@@ -105,14 +104,22 @@ export default class Dashboard_Activity extends React.Component {
          >
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this year</Text>
-            <LineChart feedbacksPerYear={feedbacksPerYear}/>
+            <LineChart 
+              feedbacksPerYear={feedbacksPerYear}
+              
+            />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>
-            <Bar os={os}/>
+            <Bar 
+              os={os}
+              
+              />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
+            <PieChartWithClickSlices 
+            smileyRange={smileyRange}/>
           </View>
         </ScrollView>
       </View>

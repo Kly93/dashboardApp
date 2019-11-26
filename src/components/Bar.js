@@ -28,35 +28,41 @@ render() {
     const osIos = osCount.map((item, index) => item.ios)
 
     return(
-      <VictoryChart
-      theme={VictoryTheme.material}
-      domain={{ x: [0, 3] }}
-      containerComponent={<VictoryVoronoiContainer />}
-      >
-      { osCount.length !== 0 ? (
-      <VictoryBar
-          labelComponent={<VictoryTooltip/>}
-          barWidth={({ index }) => index * 2 + 75}
-          style={{
-            data: {
-              fill: "#c43a31",
-              stroke: "#000000",
-              fillOpacity: 0.7,
-              strokeWidth: 3
-            }
-          }}
-          categories={{
-              x: ["Android", "iOS"]
+      <View>
+        {osCount.length !== 0 ? (
+        <VictoryChart
+        theme={VictoryTheme.material}
+        domain={{ x: [0, 3] }}
+        
+        >
+        { osCount.length !== 0 ? (
+        <VictoryBar
+            labelComponent={<VictoryTooltip/>}
+            barWidth={({ index }) => index * 2 + 75}
+            style={{
+              data: {
+                fill: "#c43a31",
+                stroke: "#000000",
+                fillOpacity: 0.7,
+                strokeWidth: 3
+              }
             }}
-          data={[
-              {x: "Android", y: osAndroid, label: osAndroid},
-              {x: "iOS", y: osIos, label: osIos}
-            ]}
-      />
-      ) : (
-      <Text> No data to display </Text>
+            categories={{
+                x: ["Android", "iOS"]
+              }}
+            data={[
+                {x: "Android", y: osAndroid, label: osAndroid},
+                {x: "iOS", y: osIos, label: osIos}
+              ]}
+        />
+        ) : (
+        <Text> No data to display </Text>
+        )}
+        </VictoryChart>
+        ) :( 
+          <Text></Text>
       )}
-      </VictoryChart>
+      </View>
     )
 }
 

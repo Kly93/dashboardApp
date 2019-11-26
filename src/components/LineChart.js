@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { VictoryLine, VictoryChart, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer, VictoryScatter } from "victory-native";
+import { VictoryLine, VictoryChart, VictoryTheme, VictoryVoronoiContainer, VictoryScatter, VictoryTooltip } from "victory-native";
 import { PropTypes } from 'prop-types';
 import { Text } from 'react-native';
 
@@ -7,6 +7,8 @@ class LineChart extends React.PureComponent {
 
 static propTypes = {
     feedbacksPerYear: PropTypes.array.isRequired,
+    onListRefresh: PropTypes.bool.isRequired,
+    onPullDownRefresh: PropTypes.func.isRequired,
 };
 
 render() {
@@ -14,7 +16,6 @@ render() {
     
     return(
         <VictoryChart
-        standalone={true}
         theme={VictoryTheme.material}
         containerComponent={<VictoryVoronoiContainer/>}
         >
@@ -49,7 +50,7 @@ render() {
         <VictoryScatter
             style={{ data: { fill: "#ab34eb" } }}
             size= {5}
-            labelComponent={<VictoryTooltip/>}
+            labelComponent={<VictoryTooltip constrainToVisibleArea/>}
             data={[
                 {x: "Jan", y: feedbacksCount[0]},
                 {x: "Feb", y: feedbacksCount[1]},
@@ -67,7 +68,7 @@ render() {
             labels={({ datum }) => datum.y}
         />
         ) : (
-            <Text> No Data to display </Text>
+            <Text> No data to display </Text>
         )}
         </VictoryChart>
             );

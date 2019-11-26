@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native';
 import LineChart from '../src/components/LineChart';
+import Bar from '../src/components/Bar';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
@@ -88,6 +89,7 @@ export default class Dashboard_Activity extends React.Component {
 
   render() {  
    const feedbacksPerYear = this.state.feedbacksPerYear;
+   const os = this.state.os;
 
     return (
       <View style={{backgroundColor: '#fff'}}>
@@ -103,11 +105,11 @@ export default class Dashboard_Activity extends React.Component {
          >
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this year</Text>
-            <LineChart
-            feedbacksPerYear={feedbacksPerYear}/>
+            <LineChart feedbacksPerYear={feedbacksPerYear}/>
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>
+            <Bar os={os}/>
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>

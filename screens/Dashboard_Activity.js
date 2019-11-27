@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native';
 import LineChart from '../src/components/LineChart';
 import Bar from '../src/components/Bar';
-import AsyncStorage from '@react-native-community/async-storage';
-import PieChartWithClickSlices from '../src/components/PieChartWithClickSlices';
+import PieChart from '../src/components/PieChart';
 
 
 const apiHost = "http://10.24.24.117:8085/get";
@@ -67,14 +66,6 @@ export default class Dashboard_Activity extends React.Component {
             });
          }
 
-  storeData = async () => {
-    try {
-      await AsyncStorage.setItem('@feedbackAmount', 'stored value')
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
   handleRefresh = () => {
     this.setState({refreshing: true});
     this._getOsAmount();
@@ -86,6 +77,7 @@ export default class Dashboard_Activity extends React.Component {
   };
 
   render() {  
+   console.disableYellowBox=true
    const feedbacksPerYear = this.state.feedbacksPerYear;
    const os = this.state.os;
    const smileyRange = this.state.smileys
@@ -120,10 +112,11 @@ export default class Dashboard_Activity extends React.Component {
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
-            <PieChartWithClickSlices 
+            <PieChart 
             smileys={smileyRange}
             onListRefresh={this.state.refreshing}
-            onPullDownRefresh={this.handleRefresh}/>
+            onPullDownRefresh={this.handleRefresh}  
+            />
           </View>
         </ScrollView>
       </View>

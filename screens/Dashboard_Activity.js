@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native
 import LineChart from '../src/components/LineChart';
 import Bar from '../src/components/Bar';
 import PieChart from '../src/components/PieChart';
+import PieChartWithClickSlices from './../src/components/PieChartWithClickSlices';
 
 
 const apiHost = "http://10.24.24.117:8085/get";
@@ -112,7 +113,7 @@ export default class Dashboard_Activity extends React.Component {
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
-            <PieChart 
+            <PieChart
             smileys={smileyRange}
             onListRefresh={this.state.refreshing}
             onPullDownRefresh={this.handleRefresh}  

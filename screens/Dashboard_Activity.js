@@ -1,12 +1,10 @@
-import React, {Component} from 'react';
-import { ScrollView, View, Text, StyleSheet, RefreshControl } from 'react-native';
+import React from 'react';
+import {ScrollView, View, Text, StyleSheet, RefreshControl} from 'react-native';
 import LineChart from '../src/components/LineChart';
 import Bar from '../src/components/Bar';
 import PieChart from '../src/components/PieChart';
-import PieChartWithClickSlices from './../src/components/PieChartWithClickSlices';
 
-
-const apiHost = "http://10.24.24.117:8085/get";
+const apiHost = 'http://195.113.246.108:8085/get';
 
 export default class Dashboard_Activity extends React.Component {
   static navigationOptions = {
@@ -19,7 +17,7 @@ export default class Dashboard_Activity extends React.Component {
     os: [],
     loading: false,
     smileys: [],
-    refreshing: false
+    refreshing: false,
   };
 
   componentDidMount() {
@@ -28,95 +26,93 @@ export default class Dashboard_Activity extends React.Component {
     this._getSmileyRangeAmount();
   }
 
-     _getFeedbackAmountPerYear = async () => {
-      fetch( apiHost + '/feedbacks/year', { method: 'GET' })
-         .then(response => response.json() )
-         .then((responseJson) => {
-             this.setState({
-              feedbacksPerYear: responseJson
-             })
-          })
-          .catch((error) => {
-             console.error(error);
-          });
-       }
+  _getFeedbackAmountPerYear = async () => {
+    fetch(apiHost + '/feedbacks/year', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          feedbacksPerYear: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
-     _getOsAmount = async () => {
-      fetch( apiHost + '/os2/android+ios', { method: 'GET' })
-         .then(response => response.json() )
-         .then((responseJson) => {
-             this.setState({
-              os: responseJson
-             })
-          })
-          .catch((error) => {
-             console.error(error);
-          });
-       }
+  _getOsAmount = async () => {
+    fetch(apiHost + '/os2/android+ios', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          os: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
-       _getSmileyRangeAmount = async () => {
-        fetch( apiHost + '/linecount/smiley', { method: 'GET' })
-           .then(response => response.json() )
-           .then((responseJson) => {
-               this.setState({
-                smileys: responseJson
-               })
-            })
-            .catch((error) => {
-               console.error(error);
-            });
-         }
+  _getSmileyRangeAmount = async () => {
+    fetch(apiHost + '/linecount/smiley', {method: 'GET'})
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          smileys: responseJson,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   handleRefresh = () => {
     this.setState({refreshing: true});
     this._getOsAmount();
-    this._getSmileyRangeAmount()
-    this._getFeedbackAmountPerYear()
-    .then(() => {
+    this._getSmileyRangeAmount();
+    this._getFeedbackAmountPerYear().then(() => {
       this.setState({refreshing: false});
     });
   };
 
-  render() {  
-   console.disableYellowBox=true
-   const feedbacksPerYear = this.state.feedbacksPerYear;
-   const os = this.state.os;
-   const smileyRange = this.state.smileys
+  render() {
+    console.disableYellowBox = true;
+    const feedbacksPerYear = this.state.feedbacksPerYear;
+    const os = this.state.os;
+    const smileyRange = this.state.smileys;
 
     return (
       <View style={{backgroundColor: '#fff'}}>
         <ScrollView
-            refreshControl={
-              <RefreshControl
-                    refreshing={ this.state.refreshing }
-                    onRefresh={ () => this.handleRefresh() }
-                  />
-          } 
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={() => this.handleRefresh()}
+            />
+          }
           showsVerticalScrollIndicator={false}
-          style={{backgroundColor: '#fff', borderRadius: 5}}
-         >
+          style={{backgroundColor: '#fff', borderRadius: 5}}>
           <View style={styles.panel}>
             <Text style={styles.text}>Feedback amount this year</Text>
-            <LineChart 
-              feedbacksPerYear={feedbacksPerYear}     
+            <LineChart
+              feedbacksPerYear={feedbacksPerYear}
               onListRefresh={this.state.refreshing}
-              onPullDownRefresh={this.handleRefresh}        
+              onPullDownRefresh={this.handleRefresh}
             />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>OS distribution</Text>
-            <Bar 
+            <Bar
               os={os}
               onListRefresh={this.state.refreshing}
               onPullDownRefresh={this.handleRefresh}
-              />
+            />
           </View>
           <View style={styles.panel}>
             <Text style={styles.text}>Satisfaction index</Text>
             <PieChart
-            smileys={smileyRange}
-            onListRefresh={this.state.refreshing}
-            onPullDownRefresh={this.handleRefresh}  
+              smileys={smileyRange}
+              onListRefresh={this.state.refreshing}
+              onPullDownRefresh={this.handleRefresh}
             />
           </View>
         </ScrollView>
